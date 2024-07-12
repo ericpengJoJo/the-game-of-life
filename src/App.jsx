@@ -1,24 +1,18 @@
-import logo from './logo.svg';
+import React from 'react';
+import { GameProvider } from './context';
+import GameOfLife from './GameOfLife';
 import './App.scss';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <GameProvider>
+      <div className="App">
+        <header className="gameheader">
+          <h1>Conway's Game of Life</h1>
+          <GameOfLife numRows={25} numCols={50} />
+        </header>
+      </div>
+    </GameProvider>
   );
 }
 
