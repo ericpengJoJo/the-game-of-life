@@ -77,13 +77,7 @@ function LifeFormRader () {
         <div
             style={{
                 display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                width: (25 * 9) + 2,
-                height: (25 * 9) + 14,
-                backgroundColor: 'white',
-                border: '4px outset black',
-                borderRadius: 5
+                justifyContent: 'center'
             }}
         >
             <div
@@ -94,37 +88,50 @@ function LifeFormRader () {
                     width: (25 * 9) + 2,
                     height: (25 * 9) + 14,
                     backgroundColor: 'white',
-                    borderLeft: '15px solid #03A9F4',
-                    borderRight: '15px solid #03A9F4',
+                    border: '4px outset black',
+                    borderRadius: 5
                 }}
             >
                 <div
                     style={{
-                        width: (25 * 7) + 2,
-                        height: (25 * 7) + 14,
-                        backgroundColor: 'orange',
-                        border: '4px solid black',
-                        borderRadius: 5
+                        display: 'flex',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        width: (25 * 9) + 2,
+                        height: (25 * 9) + 14,
+                        backgroundColor: 'white',
+                        borderLeft: '15px solid #03A9F4',
+                        borderRight: '15px solid #03A9F4',
                     }}
                 >
                     <div
                         style={{
-                            display: 'grid',
-                            gridTemplateColumns: `repeat(${7}, 25px)`,
-                    }}>
-                        {rader.map((rows, i) =>
-                                rows.map((col, j) => (
-                                    <div
-                                        key={`rader-${i}-${j}`}
-                                        className={`rader-pixel-dot ${rader[i][j] ? 'pixel-black' : ''}`}
-                                        style={{
-                                            width: 25,
-                                            height: 25,
-                                        }}                         
-                                    />
-                                ))
-                            )
-                        }
+                            width: (25 * 7) + 2,
+                            height: (25 * 7) + 14,
+                            backgroundColor: 'orange',
+                            border: '4px solid black',
+                            borderRadius: 5
+                        }}
+                    >
+                        <div
+                            style={{
+                                display: 'grid',
+                                gridTemplateColumns: `repeat(${7}, 25px)`,
+                        }}>
+                            {rader.map((rows, i) =>
+                                    rows.map((col, j) => (
+                                        <div
+                                            key={`rader-${i}-${j}`}
+                                            className={`rader-pixel-dot ${rader[i][j] ? 'pixel-black' : ''}`}
+                                            style={{
+                                                width: 25,
+                                                height: 25,
+                                            }}                         
+                                        />
+                                    ))
+                                )
+                            }
+                        </div>
                     </div>
                 </div>
             </div>

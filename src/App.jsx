@@ -9,8 +9,8 @@ function App() {
       <div className="App">
         <header className="gameheader">
           <h1>Conway's Game of Life</h1>
-          <GameOfLife numRows={25} numCols={50} />
         </header>
+          <GameOfLife numRows={25} numCols={50} />
       </div>
     </GameProvider>
   );

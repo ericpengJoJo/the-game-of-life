@@ -29,7 +29,7 @@ function GameOfLife ({
                     width: numCols * 6,
                     height: (20 * numRows) + 210,
                     backgroundColor: 'pink',
-                    border: 'solid 1px black'
+                    border: 'solid 1px black',
                 }}>
                     <LifeFormRader />
                     <CaptureBoard />

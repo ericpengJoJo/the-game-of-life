@@ -1,44 +1,44 @@
 /* App.css */
+$outline-width: 6px;
+$shadow-width: 4px;
+
+$button-background: #92CD41;
+$sec-button-background: #76c442;
+$shadow-color:  #4AA52E;
+
+$alt-button-background: #F7D51D;
+$alt-sec-button-background: #F2C409;
+$alt-shadow-color:  #E59400;
+
+$reset-button-background: #E76E55;
+$reset-sec-button-background: #CE372B;
+$reset-shadow-color:  #8C2022;
+
 
 .App {
+  min-height: 100vh;
+  padding-top: 35vh;
   text-align: center;
+  align-items: center;
 }
 
-// .App-header {
-//   background-color: #e0e2e6;
-//   min-height: 100vh;
-//   display: flex;
-//   flex-direction: column;
-//   align-items: center;
-//   justify-content: center;
-//   // font-size: calc(10px + 2vmin);
-//   color: black;
-// }
-
 .gameheader {
-  min-height: 100vh;
+  // min-height: 100vh;
+  // padding-top: 40vh;
   font-family: "Press Start 2P", system-ui;
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  // flex-direction: column;
+  // align-items: center;
   justify-content: center;
   font-size: 2vmin;
   color: black;
 }
 
-h1 {
-  margin-bottom: 20px;
-}
-
-.controls {
-  margin-bottom: 20px;
-}
-
-.grid {
-  display: grid;
-  grid-template-columns: repeat(30, 20px);
-  gap: 1px;
-}
+// .grid {
+//   display: grid;
+//   grid-template-columns: repeat(30, 20px);
+//   gap: 1px;
+// }
 
 // Game Display Pixel Dot
 .display-pixel-dot {
@@ -66,20 +66,6 @@ h1 {
 }
 
 // Button Styling
-$outline-width: 6px;
-$shadow-width: 4px;
-
-$button-background: #92CD41;
-$sec-button-background: #76c442;
-$shadow-color:  #4AA52E;
-
-$alt-button-background: #F7D51D;
-$alt-sec-button-background: #F2C409;
-$alt-shadow-color:  #E59400;
-
-$reset-button-background: #E76E55;
-$reset-sec-button-background: #CE372B;
-$reset-shadow-color:  #8C2022;
 
 .eightbit-btn {
     background: $button-background;

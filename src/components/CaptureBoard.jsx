@@ -8,15 +8,53 @@ function CaptureBoard () {
     return (
         <div
             style={{
-                marginTop: 40,
-                width: 200,
-                height: 500,
-                backgroundColor: 'orange',
-                border: '4px solid black',
-                borderRadius: 5
+                display: 'flex',
+                justifyContent: 'center'
             }}
         >
-            <div>Capture Board</div>
+            <div
+                style={{
+                    marginTop: 40,
+                    width: 250,
+                    height: 600,
+                    backgroundColor: 'orange',
+                    border: '4px solid black',
+                    borderRadius: 5,
+                }}
+            >
+                <div
+                    className='retro-game-font'
+                    style={{
+                        width: '100%',
+                        height: 100,
+                        backgroundColor: '#03A9F4',
+                        borderBottom: '4px solid black',
+                        display: 'flex',
+                        textAlign: 'center',
+                        paddingTop: 10,
+                        fontSize: 20,
+
+                    }}
+                >You're beginner!</div>
+                <div
+                    className='retro-game-font'
+                    style={{
+                        backgroundColor: 'white',
+                        width: '100%',
+                        height: 488,
+                        textAlign: 'left',
+                    }}
+                >
+                    <div
+                        className='retro-game-font'
+                        style={{
+                            paddingLeft: 20,
+                            paddingTop: 10,
+                            fontSize: 20
+                        }}
+                    >pokemon</div>
+                </div>
+            </div>
         </div>
     )
 }
