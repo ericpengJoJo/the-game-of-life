@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 
 import { useGameContext } from '../context';
+import ContainerWrapper from './ContainerWrapper';
 import {
     searchingLifeFormDisplay,
     lifeFormAnimations,
@@ -74,68 +75,40 @@ function LifeFormRader () {
     }, [lifeFormSpoted])
 
     return (
-        <div
-            style={{
-                display: 'flex',
-                justifyContent: 'center'
-            }}
+        <ContainerWrapper
+            width={(25 * 9) + 22}
+            height={(25 * 9) + 14}
         >
             <div
                 style={{
-                    display: 'flex',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    width: (25 * 9) + 2,
-                    height: (25 * 9) + 14,
-                    backgroundColor: 'white',
-                    border: '4px outset black',
+                    width: (25 * 7) + 2,
+                    height: (25 * 7) + 14,
+                    backgroundColor: 'orange',
+                    border: '4px solid black',
                     borderRadius: 5
                 }}
             >
                 <div
                     style={{
-                        display: 'flex',
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        width: (25 * 9) + 2,
-                        height: (25 * 9) + 14,
-                        backgroundColor: 'white',
-                        borderLeft: '15px solid #03A9F4',
-                        borderRight: '15px solid #03A9F4',
-                    }}
-                >
-                    <div
-                        style={{
-                            width: (25 * 7) + 2,
-                            height: (25 * 7) + 14,
-                            backgroundColor: 'orange',
-                            border: '4px solid black',
-                            borderRadius: 5
-                        }}
-                    >
-                        <div
-                            style={{
-                                display: 'grid',
-                                gridTemplateColumns: `repeat(${7}, 25px)`,
-                        }}>
-                            {rader.map((rows, i) =>
-                                    rows.map((col, j) => (
-                                        <div
-                                            key={`rader-${i}-${j}`}
-                                            className={`rader-pixel-dot ${rader[i][j] ? 'pixel-black' : ''}`}
-                                            style={{
-                                                width: 25,
-                                                height: 25,
-                                            }}                         
-                                        />
-                                    ))
-                                )
-                            }
-                        </div>
-                    </div>
+                        display: 'grid',
+                        gridTemplateColumns: `repeat(${7}, 25px)`,
+                }}>
+                    {rader.map((rows, i) =>
+                            rows.map((col, j) => (
+                                <div
+                                    key={`rader-${i}-${j}`}
+                                    className={`rader-pixel-dot ${rader[i][j] ? 'pixel-black' : ''}`}
+                                    style={{
+                                        width: 25,
+                                        height: 25,
+                                    }}                         
+                                />
+                            ))
+                        )
+                    }
                 </div>
             </div>
-        </div>
+        </ContainerWrapper>
     )
 }
 

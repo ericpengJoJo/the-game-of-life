@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { useGameContext } from '../context';
+import ContainerWrapper from './ContainerWrapper';
 import '../App.scss';
 
 function GameDisplay ({ numCols }){
@@ -15,23 +16,36 @@ function GameDisplay ({ numCols }){
     };
 
     return (
-        <>
+        <ContainerWrapper
+            width={(20 * 50) + 95}
+            height={(20 * 28) + 59}
+        >
             <div
                 style={{
-                    display: 'grid',
-                    gridTemplateColumns: `repeat(${numCols}, 20px)`,
-                }}>
-                {grid.map((rows, i) =>
-                    rows.map((col, j) => (
-                        <div
-                            key={`pixel-row-${i}-col-${j}`}
-                            onClick={() => handleGridClick(i, j)}
-                            className={`display-pixel-dot ${grid[i][j] ? 'pixel-black' : ''}`}
-                        />
-                    ))
-                )}
+                    width: (20 * 50) + 3,
+                    height: (20 * 28) + 5,
+                    backgroundColor: '#8BC34A',
+                    // margin: 15,
+                    border: '8px solid black'
+                }}
+            >
+                <div
+                    style={{
+                        display: 'grid',
+                        gridTemplateColumns: `repeat(${numCols}, 20px)`,
+                    }}>
+                    {grid.map((rows, i) =>
+                        rows.map((col, j) => (
+                            <div
+                                key={`pixel-row-${i}-col-${j}`}
+                                onClick={() => handleGridClick(i, j)}
+                                className={`display-pixel-dot ${grid[i][j] ? 'pixel-green' : ''}`}
+                            />
+                        ))
+                    )}
+                </div>
             </div>
-        </>
+        </ContainerWrapper>
     );
 }
 
