@@ -6,6 +6,7 @@ import {
     randomizeGrids,
     generateEmptyGameBoard,
     runSimulation,
+    verifyLifeForm
 } from './utils/helpers';
 
 const GameContext = createContext(null);
@@ -42,6 +43,16 @@ const reducer = (state, action) => {
                 ...state,
                 grid: randomizeGrids(action.payload.numRows, action.payload.numCols, action.payload.percentage)
             };
+        case 'verifyLifeForm':
+            return {
+                ...state,
+                lifeFormSpoted: verifyLifeForm(state.grid, state.lifeFormSpoted)
+            }
+        case 'setRader':
+            return {
+                ...state,
+                rader: action.payload
+            }
         default:
             throw new Error(`Unknown action: ${action.type}`);
     }

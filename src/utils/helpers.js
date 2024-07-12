@@ -1,5 +1,6 @@
 import produce from 'immer';
 import {
+    lifeFormPosition,
     findMyNeighbors,
 } from '../instance';
 
@@ -59,4 +60,147 @@ export function runSimulation (gridState, numRows, numCols) {
         }
     });
     return generateGrid
+}
+
+export function verifyLifeForm (gridState, lifeFormSpotedState){
+    const spotLifeForm = {
+        ...lifeFormSpotedState
+    }
+    if(!lifeFormSpotedState.block) {
+        if(isBlockForm(gridState, 2, 2)) {
+            spotLifeForm.block = true
+        }
+    }
+
+    return spotLifeForm
+}
+
+//////////////////////////////////////////////////////////////////////////Capture Life Form function/////////////////////////////////////////////////////////////////
+function locatedLifeForm (rowIdx, colIdx, formWide, formHeight, rowEndIdx, colEndIdx) {
+    const wideSize = formWide - 1;
+    const heightlength = formHeight - 1;
+
+    if([rowIdx, colIdx].every(idx => idx === 0)) {
+        return lifeFormPosition.topLeft;
+    }
+
+    if(rowIdx === 0 && colIdx === (colEndIdx - wideSize)) {
+        return lifeFormPosition.topRight;
+    }
+
+    if(rowIdx === 0) {
+        return lifeFormPosition.top;
+    }
+
+    if(rowIdx === (rowEndIdx - heightlength) && colIdx === 0) {
+        return lifeFormPosition.bottomLeft;
+    }
+
+    if(rowIdx === (rowEndIdx - heightlength) && colIdx === (colEndIdx - wideSize)) {
+        return lifeFormPosition.bottomRight;
+    }
+
+    if(rowIdx === (rowEndIdx - heightlength)) {
+        return lifeFormPosition.bottom;
+    }
+
+    if(colIdx === (colEndIdx - wideSize)) {
+        return lifeFormPosition.right;
+    }
+
+    if(colIdx === 0) {
+        return lifeFormPosition.left;
+    }
+    return lifeFormPosition.center;
+}
+
+function verifyFormWhiteSpace (grids, rowIdx, colIdx, width, height, position) {
+    //      col
+    //row[[0 0 0 0]
+    //    [0 1 1 0]     [0, 0]
+    //    [0 1 1 0]
+    //    [0 0 0 0]]
+    //
+    const whiteSpaces = [];
+    const positionArr = Object.values(lifeFormPosition)
+
+    function hasWhiteSpaces (noSpaceAreas, locatedArea) {
+        const filterArr = positionArr.filter(str => !noSpaceAreas.some(keyword => str.toLowerCase().includes(keyword)));
+        return filterArr.some(spot => spot === locatedArea)
+    }
+
+    // top left corner [0] -> 
+    if(hasWhiteSpaces(['top', 'left'], position)) {
+        console.log('run top left corner space')
+        whiteSpaces.push(grids[rowIdx - 1][colIdx - 1]);
+    }
+    // top right corner [0] -> 
+    if(hasWhiteSpaces(['top', 'right'], position)) {
+        console.log('run top right corner space')
+        whiteSpaces.push(grids[rowIdx - 1][colIdx + width]);
+    }
+    // bottom left corner [0] ->
+    if(hasWhiteSpaces(['bottom', 'left'], position)) {
+        console.log('run bottom left corner space')
+        whiteSpaces.push(grids[rowIdx + height][colIdx - 1]);
+    }
+    // bottom right corner [0] ->
+    if(hasWhiteSpaces(['bottom', 'right'], position)) {
+        console.log('run bottom right corner space')
+        whiteSpaces.push(grids[rowIdx + height][colIdx + width]);
+    }
+    // top spaces
+    if(hasWhiteSpaces(['top'], position)) {
+        console.log('run top Corner spaces')
+        const topRow = grids[rowIdx - 1]
+        for(let i = colIdx;i < colIdx + width;i += 1) {
+            whiteSpaces.push(topRow[i]);
+        }
+    }
+    // bottom spaces
+    if(hasWhiteSpaces(['bottom'], position)) {
+        console.log('run bottom Corner spaces')
+        const bottomRow = grids[rowIdx + height];
+        for(let i = colIdx;i < colIdx + width;i += 1) {
+            whiteSpaces.push(bottomRow[i]);
+        }
+    }
+    // left corner spaces
+    if(hasWhiteSpaces(['left'], position)) {
+        console.log('run left corner spaces')
+        for(let i = rowIdx;i < rowIdx + height;i += 1){
+            whiteSpaces.push(grids[i][colIdx - 1]);
+        }
+    }
+    // right corner spaces
+    if(hasWhiteSpaces(['right'], position)) {
+        console.log('run right corner spaces')
+        for(let i = rowIdx;i < rowIdx + height;i += 1){
+            whiteSpaces.push(grids[i][colIdx + width]);
+        }
+    }
+    console.log('result array of ', position, ' : ', whiteSpaces, ' whitespace length: ', whiteSpaces.length)
+    return whiteSpaces.every(num => num === 0);
+}
+
+export function isBlockForm (grids, width = 2, height = 2){
+    const rowEnd = grids.length - 1
+    const colEnd = grids[0].length - 1
+    console.log('isBlockForm run!!! :', {rowEnd}, {colEnd})
+
+    // find the black block first
+    for(let i = 0;i < grids.length - 1;i += 1) {
+        const row = grids[i]
+        for(let j = 0;j < row.length - 1; j += 1){
+            if([grids[i][j], grids[i][j + 1], grids[i + 1][j], grids[i + 1][j + 1]].every(num => num === 1)) {
+                const position = locatedLifeForm(i, j, width, height, rowEnd, colEnd);
+                console.log({position})
+                console.log('verfiy white space result ===>', verifyFormWhiteSpace(grids, i, j, width, height, position))
+                // return boolean once find the first life Form
+                return verifyFormWhiteSpace(grids, i, j, width, height, position)
+            }
+        }
+    }
+
+    return false
 }
