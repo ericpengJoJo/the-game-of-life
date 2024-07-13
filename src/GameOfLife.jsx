@@ -6,6 +6,7 @@ import GameDisplay from './components/GameDisplay';
 import GameControl from './components/GameControl';
 import LifeFormRader from './components/LifeFormRader';
 import CaptureBoard from './components/CaptureBoard';
+import DescriptionBox from './components/DescriptionBox';
 
 function GameOfLife ({
     numRows,
@@ -23,6 +24,7 @@ function GameOfLife ({
             }}>
                 <div>
                     <GameDisplay numCols={numCols} />
+                    <DescriptionBox />
                     <GameControl numRows={numRows} numCols={numCols} />
                 </div>
                 <div style={{

@@ -20,6 +20,7 @@ function CaptureBoard () {
         }, [])
         return list.map(name => (
             <div
+                key={`list-${name}`}
                 className='retro-game-font'
                 style={{
                     paddingLeft: 20,
@@ -72,14 +73,6 @@ function CaptureBoard () {
                         textAlign: 'left',
                     }}
                 >
-                    {/* <div
-                        className='retro-game-font'
-                        style={{
-                            paddingLeft: 20,
-                            paddingTop: 10,
-                            fontSize: 20
-                        }}
-                    >pokemon</div> */}
                     {handleLifeFormList()}
                 </div>
             </div>

@@ -20,6 +20,50 @@ export const defaultLifeFormSpoted = {
     beacon: false
 }
 
+export const lifeFormMaps = [
+    {
+        name: 'blockmon',
+        color: '#795548',
+        points: 10,
+        shape: [{
+            width: 2,
+            height: 2,
+            pattern: [{ x: 0, y: 0 }, { x: 1, y: 0}, { x: 0, y: 1}, { x: 1, y: 1 }]
+        }],
+        difficulty: ['easy', 'normal']
+    }, {
+        name: 'blinkermon',
+        color: '#4CAF50',
+        points: 10,
+        shape: [{
+            width: 1,
+            height: 3,
+            pattern: [{ x: 0, y: 0 }, { x: 0, y: 1 }, { x: 0, y: 2}]
+        }, {
+            width: 3,
+            height: 1,
+            pattern: [{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 2, y: 0 }]
+        }],
+        difficulty: ['easy', 'normal']
+    }, {
+        name: 'beehivemon',
+        color: '#9C27B0',
+        points: 50,
+        shape: [{
+            width: 3,
+            height: 4,
+            pattern: [{ x: 1, y: 0 }, { x: 0, y: 1 }, { x: 2, y: 1 }, { x: 0, y: 2 }, { x: 2, y: 2 }, { x: 1, y: 3 }]
+        }, {
+            width: 4,
+            height: 3,
+            pattern: [{ x: 1, y: 0 }, { x: 2, y: 0 }, { x: 0, y: 1 }, { x: 3, y: 1 }, { x: 1, y: 2 }, { x: 2, y: 2 }]
+        }],
+        difficulty: ['easy', 'normal']
+    }
+
+]
+
+
 export const formPoseType = {
     twoPoses: {
         stand: 'vertical',

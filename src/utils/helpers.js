@@ -2,6 +2,7 @@ import produce from 'immer';
 import {
     lifeFormPosition,
     findMyNeighbors,
+    lifeFormMaps
 } from '../instance';
 
 //////////////////////////////////////////////////////////////////////////Dispatch function/////////////////////////////////////////////////////////////////
@@ -71,17 +72,24 @@ export function verifyLifeForm (gridState, lifeFormSpotedState){
         }
     }
 
-    if(!lifeFormSpotedState.blinker) {
-        if(isBlinkerForm(gridState)) {
-            spotLifeForm.blinker = true
-        }
-    }
+    // if(!lifeFormSpotedState.blinker) {
+    //     if(isBlinkerForm(gridState)) {
+    //         spotLifeForm.blinker = true
+    //     }
+    // }
 
     return spotLifeForm
 }
 
 //////////////////////////////////////////////////////////////////////////Capture Life Form function/////////////////////////////////////////////////////////////////
-function locatedLifeForm (rowIdx, colIdx, formWide, formHeight, rowEndIdx, colEndIdx) {
+function locatedLifeForm (
+    rowIdx,
+    colIdx,
+    formWide,
+    formHeight,
+    rowEndIdx,
+    colEndIdx
+) {
     const wideSize = formWide - 1;
     const heightlength = formHeight - 1;
 
@@ -119,7 +127,14 @@ function locatedLifeForm (rowIdx, colIdx, formWide, formHeight, rowEndIdx, colEn
     return lifeFormPosition.center;
 }
 
-function verifyFormWhiteSpace (grids, rowIdx, colIdx, width, height, position) {
+function verifyFormWhiteSpace (
+    grids,
+    rowIdx,
+    colIdx,
+    width,
+    height,
+    position
+) {
     const whiteSpaces = [];
     const positionArr = Object.values(lifeFormPosition)
 
@@ -181,24 +196,62 @@ function verifyFormWhiteSpace (grids, rowIdx, colIdx, width, height, position) {
     // console.log('result array of ', position, ' : ', whiteSpaces, ' whitespace length: ', whiteSpaces.length)
     return whiteSpaces.every(num => num === 0);
 }
+/**
+ * 
+ * [
+    [0,0,0,0,0,0,0],
+    [0,0,0,0,0,0,0],
+    [0,0,0,0,0,1,1],
+    [0,0,0,0,0,1,1],
+    [0,0,0,0,0,0,0],
+    [0,0,0,0,0,0,0],
+    [0,0,0,0,0,0,o],
+]
+    7,7
+[5,2]
+ */
+function verifyLifeFormPattern ({ grids, type, currentX, currentY }) {
+    const patternArr = lifeFormMaps[type].shape;
+
+    for(const lifeForm of patternArr) {
+        const fillGrids = [];
+        const emptyGrids = [];
+        const patternArr = lifeForm.pattern.slice();
+        for(let i = 0;i < lifeForm.height;i += 1) {
+            for(let j = 0;j < lifeForm.width;j += 1){
+                if(patternArr.length > 0 && patternArr[0].x === j && patternArr[0].y === i) {
+                    fillGrids.push(grids[currentY + i][currentX + j])
+                    patternArr.shift()
+                } else {
+                    emptyGrids.push(grids[currentY + i][currentX + j])
+                }
+            }
+        }
+        console.log({fillGrids}, {emptyGrids})
+    }
+
+    return false;
+}
 
 export function isBlockForm (grids){
     const rowEnd = grids.length - 1
     const colEnd = grids[0].length - 1
     const width = 2;
     const height = 2
-    console.log('isBlockForm run!!! :', {rowEnd}, {colEnd})
 
-    // find the black block first
     for(let i = 0;i < grids.length - 1;i += 1) {
         const row = grids[i]
         for(let j = 0;j < row.length - 1; j += 1){
             if([grids[i][j], grids[i][j + 1], grids[i + 1][j], grids[i + 1][j + 1]].every(num => num === 1)) {
                 console.log('Find Squire!!!', [i, j])
+                verifyLifeFormPattern({
+                    grids,
+                    type: 'blockmon',
+                    currentX: j,
+                    currentY: i
+                })
                 const position = locatedLifeForm(i, j, width, height, rowEnd, colEnd);
-                console.log({position})
-                console.log('verfiy white space result ===>', verifyFormWhiteSpace(grids, i, j, width, height, position))
-                // return boolean once find the first life Form
+
                 if (verifyFormWhiteSpace(grids, i, j, width, height, position)) return true
             }
         }
@@ -231,7 +284,7 @@ export function isBlinkerForm (grids){
                 console.log('Find Blinker lie down!!!', [i, j])
                 const position = locatedLifeForm(i, j, 3, 1, rowEnd, colEnd);
                 console.log({position})
-                console.log('verfiy white space result ===>', verifyFormWhiteSpace(grids, i, j, 3, 1, position))
+                // console.log('verfiy white space result ===>', verifyFormWhiteSpace(grids, i, j, 3, 1, position))
                 // return boolean once find the first life Form
                 if (verifyFormWhiteSpace(grids, i, j, 3, 1, position)) return true
             }
@@ -240,3 +293,63 @@ export function isBlinkerForm (grids){
 
     return false
 }
+
+// store 
+// 
+/**
+ * // 0 1 0
+//    1 0 1
+//    1 0 1
+//    0 1 0
+ * beehive: {
+ * x1y0, x0y1, x2y1, x0y2, x2y2, x1y3
+ * x-0, x-2
+ * x-
+ * }
+ * 
+ */
+
+// export function isBeehiveForm (grids){
+//     const rowEnd = grids.length - 1
+//     const colEnd = grids[0].length - 1
+//     console.log('isBeehiveForm run!!! :', {rowEnd}, {colEnd})
+
+//     // find the black block first
+//     for(let i = 0;i < grids.length - 1;i += 1) {
+//         const row = grids[i]
+//         for(let j = 0;j < row.length - 1; j += 1){
+//             // stand up
+//             0 1 0
+//             1 0 1
+//             1 0 1
+//             0 1 0
+//             if([grids[i][j + 1], grids[i + 1][j], grids[i + 1][j + 2], grids[i + 2][j], grids[i + 2][j + 2], grids[i + 3][j + 1]].every(num => num === 1)) {
+//                 if([grids[i][j], grids[i][j + 2], grids[i + 1][j + 1], grids[i + 2][j + 1], grids[i + 3][j], grids[i + 3][j + 2]].every(num => num === 0)) {
+//                     console.log('Find Beehive stand!!!', [i, j])
+//                     const position = locatedLifeForm(i, j, 3, 4, rowEnd, colEnd);
+//                     console.log({position})
+//                     console.log('verfiy white space result ===>', verifyFormWhiteSpace(grids, i, j, 3, 4, position))
+//                     // return boolean once find the first life Form
+//                     if (verifyFormWhiteSpace(grids, i, j, 3, 4, position)) return true
+//                 }
+//             }
+
+//             // lie down
+//             // 0 1 1 0
+//             // 1 0 0 1
+//             // 0 1 1 0
+//             if([grids[i][j + 1], grids[i][j + 2], grids[i + 1][j], grids[i + 1][j + 3], grids[i + 2][j + 1], grids[i + 2][j + 2]].every(num => num === 1)) {
+//                 if([grids[i][j], grids[i][j + 3], grids[i + 1][j + 1], grids[i + 1][j + 2], grids[i + 2][j], grids[i + 2][j + 3]].every(num => num === 0)) {
+//                     console.log('Find Beehive lie down!!!', [i, j])
+//                     const position = locatedLifeForm(i, j, 4, 3, rowEnd, colEnd);
+//                     console.log({position})
+//                     // console.log('verfiy white space result ===>', verifyFormWhiteSpace(grids, i, j, 3, 1, position))
+//                     // return boolean once find the first life Form
+//                     if (verifyFormWhiteSpace(grids, i, j, 4, 3, position)) return true
+//                 }
+//             }
+//         }
+//     }
+
+//     return false
+// }

@@ -56,6 +56,12 @@ function GameControl({
 
     return (
         <>
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'center'
+          }}
+        >
             <div style={{
                 height: 150,
                 width: 20 * 50,
@@ -91,6 +97,7 @@ function GameControl({
                     Reset
                 </button>
             </div>
+        </div>
         </>
     );
 }
