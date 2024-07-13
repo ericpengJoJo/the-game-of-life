@@ -211,8 +211,9 @@ function verifyFormWhiteSpace (
 [5,2]
  */
 function verifyLifeFormPattern ({ grids, type, currentX, currentY }) {
-    const patternArr = lifeFormMaps[type].shape;
-
+    const patternArr = lifeFormMaps.filter(({name}) => name === type)[0].shape;
+    const rowEnd = grids.length - 1
+    const colEnd = grids[0].length - 1
     for(const lifeForm of patternArr) {
         const fillGrids = [];
         const emptyGrids = [];
@@ -228,32 +229,42 @@ function verifyLifeFormPattern ({ grids, type, currentX, currentY }) {
             }
         }
         console.log({fillGrids}, {emptyGrids})
+        if(fillGrids.every(num => num === 1)) {
+            if(emptyGrids.length === 0 || emptyGrids.every(num => num === 0)) {
+                const position = locatedLifeForm(currentY, currentX, lifeForm.width, lifeForm.height, rowEnd, colEnd);
+
+                if (verifyFormWhiteSpace(grids, currentY, currentX, lifeForm.width, lifeForm.height, position)) return true
+            }
+        }
     }
 
     return false;
 }
 
 export function isBlockForm (grids){
-    const rowEnd = grids.length - 1
-    const colEnd = grids[0].length - 1
-    const width = 2;
-    const height = 2
 
     for(let i = 0;i < grids.length - 1;i += 1) {
         const row = grids[i]
         for(let j = 0;j < row.length - 1; j += 1){
-            if([grids[i][j], grids[i][j + 1], grids[i + 1][j], grids[i + 1][j + 1]].every(num => num === 1)) {
-                console.log('Find Squire!!!', [i, j])
-                verifyLifeFormPattern({
-                    grids,
-                    type: 'blockmon',
-                    currentX: j,
-                    currentY: i
-                })
-                const position = locatedLifeForm(i, j, width, height, rowEnd, colEnd);
-
-                if (verifyFormWhiteSpace(grids, i, j, width, height, position)) return true
+            const searchLifeForm = {
+                grids,
+                type: 'blockmon',
+                currentX: j,
+                currentY: i
             }
+            if(verifyLifeFormPattern(searchLifeForm)) return true
+            // if([grids[i][j], grids[i][j + 1], grids[i + 1][j], grids[i + 1][j + 1]].every(num => num === 1)) {
+            //     console.log('Find Squire!!!', [i, j])
+            //     verifyLifeFormPattern({
+            //         grids,
+            //         type: 'blockmon',
+            //         currentX: j,
+            //         currentY: i
+            //     })
+            //     const position = locatedLifeForm(i, j, width, height, rowEnd, colEnd);
+
+            //     if (verifyFormWhiteSpace(grids, i, j, width, height, position)) return true
+            // }
         }
     }
 
