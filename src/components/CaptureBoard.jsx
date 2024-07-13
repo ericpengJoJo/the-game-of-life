@@ -1,10 +1,37 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import { useGameContext } from '../context';
 
 
 function CaptureBoard () {
-    const { state, dispatch } = useGameContext()
+    const { state } = useGameContext()
+    const { lifeFormSpoted } = state;
+
+    useEffect(() => {
+
+    }, [lifeFormSpoted])
+
+    function handleLifeFormList () {
+        const list = Object.entries(lifeFormSpoted).reduce((acc, cur) => {
+            if(cur[1]){
+                acc.push(cur[0])
+            }
+            return acc;
+        }, [])
+        return list.map(name => (
+            <div
+                className='retro-game-font'
+                style={{
+                    paddingLeft: 20,
+                    paddingTop: 10,
+                    fontSize: 20
+                }}
+            >
+                {name}mon
+            </div>
+        ))
+    }
+
     return (
         <div
             style={{
@@ -45,14 +72,15 @@ function CaptureBoard () {
                         textAlign: 'left',
                     }}
                 >
-                    <div
+                    {/* <div
                         className='retro-game-font'
                         style={{
                             paddingLeft: 20,
                             paddingTop: 10,
                             fontSize: 20
                         }}
-                    >pokemon</div>
+                    >pokemon</div> */}
+                    {handleLifeFormList()}
                 </div>
             </div>
         </div>

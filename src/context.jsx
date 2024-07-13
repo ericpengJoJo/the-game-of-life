@@ -17,8 +17,6 @@ const initialState = {
     rader: generateEmptyGameBoard(7, 7)
 }
 
-
-
 const reducer = (state, action) => {
     switch (action.type) {
         case 'generateEmptyGameBoard':
@@ -37,7 +35,9 @@ const reducer = (state, action) => {
                 grid: runSimulation(state.grid, action.payload.numRows, action.payload.numCols)
             }
         case 'reset':
-            return initialState;
+            return {
+                ...initialState
+            };
         case 'randomizeGrids':
             return {
                 ...state,
