@@ -14,7 +14,11 @@ const GameContext = createContext(null);
 const initialState = {
     grid: generateEmptyGameBoard(),
     lifeFormSpoted: defaultLifeFormSpoted,
-    rader: generateEmptyGameBoard(7, 7)
+    rader: generateEmptyGameBoard(7, 7),
+    user: {
+        score: 0,
+        lifeFormList: []
+    }
 }
 
 const reducer = (state, action) => {

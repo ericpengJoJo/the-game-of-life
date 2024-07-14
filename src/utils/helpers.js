@@ -2,7 +2,9 @@ import produce from 'immer';
 import {
     lifeFormPosition,
     findMyNeighbors,
-    lifeFormMaps
+    lifeFormMaps,
+    transitionAnimations,
+    searchingRaderAnimation
 } from '../instance';
 
 //////////////////////////////////////////////////////////////////////////Dispatch function/////////////////////////////////////////////////////////////////
@@ -110,15 +112,15 @@ export function verifyLifeForm (gridState, lifeFormSpotedState){
                 }
             }
 
-            // if(!lifeFormSpotedState.beehivemon) {
-            //     searchLifeForm = {
-            //         ...searchLifeForm,
-            //         type: 'beehivemon',
-            //     }
-            //     if(verifyLifeFormPattern(searchLifeForm)) {
-            //         spotLifeForm.beehivemon = true
-            //     }
-            // }
+            if(!lifeFormSpotedState.beehivemon) {
+                searchLifeForm = {
+                    ...searchLifeForm,
+                    type: 'beehivemon',
+                }
+                if(verifyLifeFormPattern(searchLifeForm)) {
+                    spotLifeForm.beehivemon = true
+                }
+            }
 
 
 
@@ -190,77 +192,89 @@ function verifyFormWhiteSpace (
         return filterArr.some(spot => spot === locatedArea)
     }
 
-    // top left corner [0] -> 
     if(hasWhiteSpaces(['top', 'left'], position)) {
-        // console.log('run top left corner space')
         whiteSpaces.push(grids[rowIdx - 1][colIdx - 1]);
     }
-    // top right corner [0] -> 
+
     if(hasWhiteSpaces(['top', 'right'], position)) {
-        // console.log('run top right corner space')
         whiteSpaces.push(grids[rowIdx - 1][colIdx + width]);
     }
-    // bottom left corner [0] ->
+
     if(hasWhiteSpaces(['bottom', 'left'], position)) {
-        // console.log('run bottom left corner space')
         whiteSpaces.push(grids[rowIdx + height][colIdx - 1]);
     }
-    // bottom right corner [0] ->
+
     if(hasWhiteSpaces(['bottom', 'right'], position)) {
-        // console.log('run bottom right corner space')
         whiteSpaces.push(grids[rowIdx + height][colIdx + width]);
     }
-    // top spaces
+
     if(hasWhiteSpaces(['top'], position)) {
-        // console.log('run top Corner spaces')
         const topRow = grids[rowIdx - 1]
         for(let i = colIdx;i < colIdx + width;i += 1) {
             whiteSpaces.push(topRow[i]);
         }
     }
-    // bottom spaces
+
     if(hasWhiteSpaces(['bottom'], position)) {
-        // console.log('run bottom Corner spaces')
         const bottomRow = grids[rowIdx + height];
         for(let i = colIdx;i < colIdx + width;i += 1) {
             whiteSpaces.push(bottomRow[i]);
         }
     }
-    // left corner spaces
     if(hasWhiteSpaces(['left'], position)) {
-        // console.log('run left corner spaces')
         for(let i = rowIdx;i < rowIdx + height;i += 1){
             whiteSpaces.push(grids[i][colIdx - 1]);
         }
     }
-    // right corner spaces
+
     if(hasWhiteSpaces(['right'], position)) {
-        // console.log('run right corner spaces')
         for(let i = rowIdx;i < rowIdx + height;i += 1){
             whiteSpaces.push(grids[i][colIdx + width]);
         }
     }
-    // console.log('result array of ', position, ' : ', whiteSpaces, ' whitespace length: ', whiteSpaces.length)
+
     return whiteSpaces.every(num => num === 0);
 }
 
 export function generateRaderAnimationArr ({ type, isLifeForm = false }) {
     const result = []
-    if (isLifeForm) {
-        const lifeFormDetail = lifeFormMaps.filter(({name}) => name === type)[0];
-        const { animation, color, name } = lifeFormDetail;
+    let frameDetail
+    let duplicateFrames = 1
 
-        let duplicateFrames = 1
-        if(type === 'blockmon' || type === 'beehivemon'){
-            duplicateFrames = 4
+    if (type === 'captured' && !isLifeForm) {
+        const fullGrids = [];
+        const emptyGrids = []
+        console.log("run generateGameBoard!!")
+        for(let i = 0;i < 7; i += 1){
+            fullGrids.push(Array.from(Array(7), () => 1));
+            emptyGrids.push(Array.from(Array(7), () => 0));
         }
+        return [fullGrids, emptyGrids];
+    }
 
+    if (isLifeForm) {
+        frameDetail = lifeFormMaps.filter(({name}) => name === type)[0];
+    }
+    if (!isLifeForm && type === 'transition') {
+        frameDetail = transitionAnimations
+    }
+
+    if (!isLifeForm && type === 'searching') {
+        frameDetail = searchingRaderAnimation
+    }
+    const { animation, color, name } = frameDetail;
+    
+    if(type === 'blockmon' || type === 'beehivemon'){
+        duplicateFrames = 4
+    } else if (type === 'blinkermon') {
+        duplicateFrames = 2
+    }
+    let count = 0
+    while(count < duplicateFrames) {
         for(const animationDetail of animation) {
             const { pattern } = animationDetail;
-            let count = 0;
-            while(count < duplicateFrames) {
                 const trackPattern = pattern.slice();
-
+    
                 const outerArr = []
                 for(let i = 0;i < animationDetail.height;i += 1){
                     const innerArr = []
@@ -268,16 +282,16 @@ export function generateRaderAnimationArr ({ type, isLifeForm = false }) {
                         const checkGrid =  trackPattern[0]
                         let gridDetail = {
                             name,
-                            color,
+                            color: '',
                             value: 0
                         }
-                        console.log({ checkGrid })
                         if(trackPattern.length > 0
                             && checkGrid.x === j
                             && checkGrid.y === i
                         ) {
                             gridDetail = {
                                 ...gridDetail,
+                                color,
                                 value: 1
                             }
                             trackPattern.shift()
@@ -287,11 +301,11 @@ export function generateRaderAnimationArr ({ type, isLifeForm = false }) {
                     outerArr.push(innerArr)
                 }
                 result.push(outerArr)
-                count += 1
-            }
-            return result;
         }
+        count += 1
     }
+
+    return result;
 };
 /**
  * 
@@ -326,7 +340,7 @@ function verifyLifeFormPattern ({ grids, type, currentX, currentY }) {
                     }
                 }
             }
-            console.log({fillGrids}, {emptyGrids})
+
             if(fillGrids.every(num => num === 1)) {
                 if(emptyGrids.length === 0 || emptyGrids.every(num => num === 0)) {
                     const position = locatedLifeForm(currentY, currentX, shape.width, shape.height, rowEnd, colEnd);

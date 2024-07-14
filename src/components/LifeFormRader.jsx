@@ -2,11 +2,6 @@ import React, { useEffect } from 'react'
 
 import { useGameContext } from '../context';
 import ContainerWrapper from './ContainerWrapper';
-import {
-    searchingLifeFormDisplay,
-    lifeFormAnimations,
-    transitionAnimations,
-} from '../instance';
 import {generateRaderAnimationArr } from '../utils/helpers';
 
 
@@ -22,7 +17,9 @@ function LifeFormRader () {
     let intervalId = null;
 
     function raderAnimation () {
-        let animatedArr = searchingLifeFormDisplay;
+        let animatedArr = generateRaderAnimationArr({
+            type: 'searching',
+        });
         const lifeFormsArr = Object.entries(lifeFormSpoted).reduce((acc, cur) => {
             if(cur[1]) {
                 acc.push(cur[0])
@@ -47,13 +44,18 @@ function LifeFormRader () {
         }
         if (lifeFormsArr.length > 0) {
             animatedArr = []
-            console.log('generateRaderAnimationArr: ', generateRaderAnimationArr({
-                type: 'blockmon',
-                isLifeForm: true
-            }))
+
             for(const type of lifeFormsArr) {
-                animatedArr.push(...lifeFormAnimations[type])
-                animatedArr.push(...transitionAnimations)
+                animatedArr.push(...generateRaderAnimationArr({
+                    type,
+                    isLifeForm: true
+                }))
+                animatedArr.push(...generateRaderAnimationArr({
+                    type: 'transition',
+                }))
+                console.log('transtionAnimation: ', generateRaderAnimationArr({
+                    type: 'transition',
+                }))
             }
             console.log({animatedArr})
         }
@@ -101,10 +103,12 @@ function LifeFormRader () {
                             rows.map((col, j) => (
                                 <div
                                     key={`rader-${i}-${j}`}
-                                    className={`rader-pixel-dot ${rader[i][j] ? 'pixel-black' : ''}`}
+                                    // className={`rader-pixel-dot ${rader[i][j] ? 'pixel-black' : ''}`}
+                                    className='rader-pixel-dot'
                                     style={{
                                         width: 25,
                                         height: 25,
+                                        backgroundColor: col.color
                                     }}                         
                                 />
                             ))
