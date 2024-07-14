@@ -110,6 +110,16 @@ export function verifyLifeForm (gridState, lifeFormSpotedState){
                 }
             }
 
+            // if(!lifeFormSpotedState.beehivemon) {
+            //     searchLifeForm = {
+            //         ...searchLifeForm,
+            //         type: 'beehivemon',
+            //     }
+            //     if(verifyLifeFormPattern(searchLifeForm)) {
+            //         spotLifeForm.beehivemon = true
+            //     }
+            // }
+
 
 
         }
@@ -233,6 +243,56 @@ function verifyFormWhiteSpace (
     // console.log('result array of ', position, ' : ', whiteSpaces, ' whitespace length: ', whiteSpaces.length)
     return whiteSpaces.every(num => num === 0);
 }
+
+export function generateRaderAnimationArr ({ type, isLifeForm = false }) {
+    const result = []
+    if (isLifeForm) {
+        const lifeFormDetail = lifeFormMaps.filter(({name}) => name === type)[0];
+        const { animation, color, name } = lifeFormDetail;
+
+        let duplicateFrames = 1
+        if(type === 'blockmon' || type === 'beehivemon'){
+            duplicateFrames = 4
+        }
+
+        for(const animationDetail of animation) {
+            const { pattern } = animationDetail;
+            let count = 0;
+            while(count < duplicateFrames) {
+                const trackPattern = pattern.slice();
+
+                const outerArr = []
+                for(let i = 0;i < animationDetail.height;i += 1){
+                    const innerArr = []
+                    for(let j = 0;j < animationDetail.width;j += 1) {
+                        const checkGrid =  trackPattern[0]
+                        let gridDetail = {
+                            name,
+                            color,
+                            value: 0
+                        }
+                        console.log({ checkGrid })
+                        if(trackPattern.length > 0
+                            && checkGrid.x === j
+                            && checkGrid.y === i
+                        ) {
+                            gridDetail = {
+                                ...gridDetail,
+                                value: 1
+                            }
+                            trackPattern.shift()
+                        }
+                        innerArr.push(gridDetail)
+                    }
+                    outerArr.push(innerArr)
+                }
+                result.push(outerArr)
+                count += 1
+            }
+            return result;
+        }
+    }
+};
 /**
  * 
  * [

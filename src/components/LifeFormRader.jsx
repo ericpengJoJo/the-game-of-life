@@ -6,8 +6,8 @@ import {
     searchingLifeFormDisplay,
     lifeFormAnimations,
     transitionAnimations,
-    raderLifeFormColors
 } from '../instance';
+import {generateRaderAnimationArr } from '../utils/helpers';
 
 
 
@@ -47,6 +47,10 @@ function LifeFormRader () {
         }
         if (lifeFormsArr.length > 0) {
             animatedArr = []
+            console.log('generateRaderAnimationArr: ', generateRaderAnimationArr({
+                type: 'blockmon',
+                isLifeForm: true
+            }))
             for(const type of lifeFormsArr) {
                 animatedArr.push(...lifeFormAnimations[type])
                 animatedArr.push(...transitionAnimations)

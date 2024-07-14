@@ -20,6 +20,18 @@ export const defaultLifeFormSpoted = {
     beaconmon: false
 }
 
+/**
+ * [
+    [0,0,0,0,0,0,0],
+    [0,1,1,1,1,1,0],
+    [0,1,1,1,1,1,0],
+    [0,1,1,1,1,1,0],
+    [0,1,1,1,1,1,0],
+    [0,1,1,1,1,1,0],
+    [0,0,0,0,0,0,0],
+]
+ */
+
 export const lifeFormMaps = [
     {
         name: 'blockmon',
@@ -30,7 +42,14 @@ export const lifeFormMaps = [
             height: 2,
             pattern: [{ x: 0, y: 0 }, { x: 1, y: 0}, { x: 0, y: 1}, { x: 1, y: 1 }]
         }],
-        difficulty: ['easy', 'normal']
+        difficulty: ['easy', 'normal'],
+        animation: [{
+            width: 7,
+            height: 7,
+            pattern: [
+                { x:1, y:1 }, { x:2, y:1 }, { x:3, y:1 }, { x:4, y:1 }, { x:5, y:1 }, { x:1, y:2 }, { x:2, y:2 }, { x:3, y:2 }, { x:4, y:2 }, { x:5, y:2 }, { x:1, y:3 }, { x:2, y:3 }, { x:3, y:3 }, { x:4, y:3 }, { x:5, y:3 }, { x:1, y:4 }, { x:2, y:4 }, { x:3, y:4 }, { x:4, y:4 }, { x:5, y:4 }, { x:1, y:5 }, { x:2, y:5 }, { x:3, y:5 }, { x:4, y:5 }, { x:5, y:5 }
+            ]
+        }]
     }, {
         name: 'blinkermon',
         color: '#4CAF50',
@@ -44,7 +63,20 @@ export const lifeFormMaps = [
             height: 1,
             pattern: [{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 2, y: 0 }]
         }],
-        difficulty: ['easy', 'normal']
+        difficulty: ['easy', 'normal'],
+        animation: [{
+            width: 7,
+            height: 7,
+            pattern: [
+                { x:3, y:1 }, { x:3, y:2 }, { x:3, y:3 }, { x:3, y:4 }, { x:3, y:5 }
+            ]
+        }, {
+            width: 7,
+            height: 7,
+            pattern: [
+                { x:1, y:3 }, { x:2, y:3 }, { x:3, y:3 }, { x:4, y:3 }, { x:5, y:3 }
+            ]
+        }]
     }, {
         name: 'beehivemon',
         color: '#9C27B0',
@@ -58,7 +90,14 @@ export const lifeFormMaps = [
             height: 3,
             pattern: [{ x: 1, y: 0 }, { x: 2, y: 0 }, { x: 0, y: 1 }, { x: 3, y: 1 }, { x: 1, y: 2 }, { x: 2, y: 2 }]
         }],
-        difficulty: ['easy', 'normal']
+        difficulty: ['easy', 'normal'],
+        animation: [{
+            width: 7,
+            height: 7,
+            pattern: [
+                { x:2, y:0 }, { x:3, y:0 }, { x:4, y:0 }, { x:1, y:1 }, { x:5, y:1 }, { x:1, y:2 }, { x:5, y:2 }, { x:1, y:3 }, { x:5, y:3 }, { x:1, y:4 }, { x:5, y:4 }, { x:1, y:5 }, { x:5, y:5 }, { x:2, y:6 }, { x:3, y:6 }, { x:4, y:6 }
+            ]
+        }]
     }
 
 ]
@@ -264,5 +303,6 @@ const blinkerFrames = [[
 
 export const lifeFormAnimations = {
     blockmon: blockFrames,
-    blinkermon: blinkerFrames
+    blinkermon: blinkerFrames,
+    // beehivemon:
 }
