@@ -66,17 +66,54 @@ export function verifyLifeForm (gridState, lifeFormSpotedState){
     const spotLifeForm = {
         ...lifeFormSpotedState
     }
-    if(!lifeFormSpotedState.block) {
-        if(isBlockForm(gridState)) {
-            spotLifeForm.block = true
-        }
-    }
+
+    let searchLifeForm = null;
+    // if(!lifeFormSpotedState.block) {
+    //     if(isBlockForm(gridState)) {
+    //         spotLifeForm.block = true
+    //     }
+    // }
 
     // if(!lifeFormSpotedState.blinker) {
     //     if(isBlinkerForm(gridState)) {
     //         spotLifeForm.blinker = true
     //     }
     // }
+
+    for(let i = 0;i < gridState.length - 1;i += 1) {
+        const row = gridState[i]
+        for(let j = 0;j < row.length - 1; j += 1){
+            searchLifeForm = {
+                grids: gridState,
+                type: 'blockmon',
+                currentX: j,
+                currentY: i
+            }
+
+            if(!lifeFormSpotedState.blockmon) {
+                searchLifeForm = {
+                    ...searchLifeForm,
+                    type: 'blockmon',
+                }
+                if(verifyLifeFormPattern(searchLifeForm)) {
+                    spotLifeForm.blockmon = true
+                }
+            }
+
+            if(!lifeFormSpotedState.blinkermon) {
+                searchLifeForm = {
+                    ...searchLifeForm,
+                    type: 'blinkermon',
+                }
+                if(verifyLifeFormPattern(searchLifeForm)) {
+                    spotLifeForm.blinkermon = true
+                }
+            }
+
+
+
+        }
+    }
 
     return spotLifeForm
 }
@@ -211,29 +248,31 @@ function verifyFormWhiteSpace (
 [5,2]
  */
 function verifyLifeFormPattern ({ grids, type, currentX, currentY }) {
-    const patternArr = lifeFormMaps.filter(({name}) => name === type)[0].shape;
+    const { shapes } = lifeFormMaps.filter(({name}) => name === type)[0];
     const rowEnd = grids.length - 1
     const colEnd = grids[0].length - 1
-    for(const lifeForm of patternArr) {
+    for(const shape of shapes) {
         const fillGrids = [];
         const emptyGrids = [];
-        const patternArr = lifeForm.pattern.slice();
-        for(let i = 0;i < lifeForm.height;i += 1) {
-            for(let j = 0;j < lifeForm.width;j += 1){
-                if(patternArr.length > 0 && patternArr[0].x === j && patternArr[0].y === i) {
-                    fillGrids.push(grids[currentY + i][currentX + j])
-                    patternArr.shift()
-                } else {
-                    emptyGrids.push(grids[currentY + i][currentX + j])
+        const patterns = shape.pattern.slice();
+        if((currentX + shape.width - 1 <= colEnd) && (currentY + shape.height - 1 <= rowEnd)) {
+            for(let i = 0;i < shape.height;i += 1) {
+                for(let j = 0;j < shape.width;j += 1){
+                    if(patterns.length > 0 && patterns[0].x === j && patterns[0].y === i) {
+                        fillGrids.push(grids[currentY + i][currentX + j])
+                        patterns.shift()
+                    } else {
+                        emptyGrids.push(grids[currentY + i][currentX + j])
+                    }
                 }
             }
-        }
-        console.log({fillGrids}, {emptyGrids})
-        if(fillGrids.every(num => num === 1)) {
-            if(emptyGrids.length === 0 || emptyGrids.every(num => num === 0)) {
-                const position = locatedLifeForm(currentY, currentX, lifeForm.width, lifeForm.height, rowEnd, colEnd);
-
-                if (verifyFormWhiteSpace(grids, currentY, currentX, lifeForm.width, lifeForm.height, position)) return true
+            console.log({fillGrids}, {emptyGrids})
+            if(fillGrids.every(num => num === 1)) {
+                if(emptyGrids.length === 0 || emptyGrids.every(num => num === 0)) {
+                    const position = locatedLifeForm(currentY, currentX, shape.width, shape.height, rowEnd, colEnd);
+    
+                    if (verifyFormWhiteSpace(grids, currentY, currentX, shape.width, shape.height, position)) return true
+                }
             }
         }
     }
@@ -271,39 +310,39 @@ export function isBlockForm (grids){
     return false
 }
 
-export function isBlinkerForm (grids){
-    const rowEnd = grids.length - 1
-    const colEnd = grids[0].length - 1
-    console.log('isBlinkerForm run!!! :', {rowEnd}, {colEnd})
+// export function isBlinkerForm (grids){
+//     const rowEnd = grids.length - 1
+//     const colEnd = grids[0].length - 1
+//     console.log('isBlinkerForm run!!! :', {rowEnd}, {colEnd})
 
-    // find the black block first
-    for(let i = 0;i < grids.length - 1;i += 1) {
-        const row = grids[i]
-        for(let j = 0;j < row.length - 1; j += 1){
-            // stand up
-            if([grids[i][j], grids[i + 1][j], grids[i + 2][j]].every(num => num === 1)) {
-                console.log('Find Blinker stand!!!', [i, j])
-                const position = locatedLifeForm(i, j, 1, 3, rowEnd, colEnd);
-                console.log({position})
-                console.log('verfiy white space result ===>', verifyFormWhiteSpace(grids, i, j, 1, 3, position))
-                // return boolean once find the first life Form
-                if (verifyFormWhiteSpace(grids, i, j, 1, 3, position)) return true
-            }
+//     // find the black block first
+//     for(let i = 0;i < grids.length - 1;i += 1) {
+//         const row = grids[i]
+//         for(let j = 0;j < row.length - 1; j += 1){
+//             // stand up
+//             if([grids[i][j], grids[i + 1][j], grids[i + 2][j]].every(num => num === 1)) {
+//                 console.log('Find Blinker stand!!!', [i, j])
+//                 const position = locatedLifeForm(i, j, 1, 3, rowEnd, colEnd);
+//                 console.log({position})
+//                 console.log('verfiy white space result ===>', verifyFormWhiteSpace(grids, i, j, 1, 3, position))
+//                 // return boolean once find the first life Form
+//                 if (verifyFormWhiteSpace(grids, i, j, 1, 3, position)) return true
+//             }
 
-            // lie down
-            if([grids[i][j], grids[i][j + 1], grids[i][j + 2]].every(num => num === 1)) {
-                console.log('Find Blinker lie down!!!', [i, j])
-                const position = locatedLifeForm(i, j, 3, 1, rowEnd, colEnd);
-                console.log({position})
-                // console.log('verfiy white space result ===>', verifyFormWhiteSpace(grids, i, j, 3, 1, position))
-                // return boolean once find the first life Form
-                if (verifyFormWhiteSpace(grids, i, j, 3, 1, position)) return true
-            }
-        }
-    }
+//             // lie down
+//             if([grids[i][j], grids[i][j + 1], grids[i][j + 2]].every(num => num === 1)) {
+//                 console.log('Find Blinker lie down!!!', [i, j])
+//                 const position = locatedLifeForm(i, j, 3, 1, rowEnd, colEnd);
+//                 console.log({position})
+//                 // console.log('verfiy white space result ===>', verifyFormWhiteSpace(grids, i, j, 3, 1, position))
+//                 // return boolean once find the first life Form
+//                 if (verifyFormWhiteSpace(grids, i, j, 3, 1, position)) return true
+//             }
+//         }
+//     }
 
-    return false
-}
+//     return false
+// }
 
 // store 
 // 

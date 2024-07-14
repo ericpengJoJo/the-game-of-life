@@ -10,14 +10,14 @@ export const findMyNeighbors = [
 ];
 
 export const defaultLifeFormSpoted = {
-    block: false,
-    beehive: false,
-    loaf: false,
-    boat: false,
-    tub: false,
-    blinker: false,
-    toad: false,
-    beacon: false
+    blockmon: false,
+    beehivemon: false,
+    loafmon: false,
+    boatmon: false,
+    tubmon: false,
+    blinkermon: false,
+    toadmon: false,
+    beaconmon: false
 }
 
 export const lifeFormMaps = [
@@ -25,7 +25,7 @@ export const lifeFormMaps = [
         name: 'blockmon',
         color: '#795548',
         points: 10,
-        shape: [{
+        shapes: [{
             width: 2,
             height: 2,
             pattern: [{ x: 0, y: 0 }, { x: 1, y: 0}, { x: 0, y: 1}, { x: 1, y: 1 }]
@@ -35,7 +35,7 @@ export const lifeFormMaps = [
         name: 'blinkermon',
         color: '#4CAF50',
         points: 10,
-        shape: [{
+        shapes: [{
             width: 1,
             height: 3,
             pattern: [{ x: 0, y: 0 }, { x: 0, y: 1 }, { x: 0, y: 2}]
@@ -49,7 +49,7 @@ export const lifeFormMaps = [
         name: 'beehivemon',
         color: '#9C27B0',
         points: 50,
-        shape: [{
+        shapes: [{
             width: 3,
             height: 4,
             pattern: [{ x: 1, y: 0 }, { x: 0, y: 1 }, { x: 2, y: 1 }, { x: 0, y: 2 }, { x: 2, y: 2 }, { x: 1, y: 3 }]
@@ -263,6 +263,6 @@ const blinkerFrames = [[
 ]]
 
 export const lifeFormAnimations = {
-    block: blockFrames,
-    blinker: blinkerFrames
+    blockmon: blockFrames,
+    blinkermon: blinkerFrames
 }

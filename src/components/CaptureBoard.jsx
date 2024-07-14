@@ -28,7 +28,7 @@ function CaptureBoard () {
                     fontSize: 20
                 }}
             >
-                {name}mon
+                {name}
             </div>
         ))
     }
