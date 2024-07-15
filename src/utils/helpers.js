@@ -131,6 +131,26 @@ export function verifyLifeForm (gridState, lifeFormSpotedState){
                 }
             }
 
+            if(!lifeFormSpotedState.beaconmon) {
+                searchLifeForm = {
+                    ...searchLifeForm,
+                    type: 'beaconmon',
+                }
+                if(verifyLifeFormPattern(searchLifeForm)) {
+                    spotLifeForm.beaconmon = true
+                }
+            }
+
+            if(!lifeFormSpotedState.glidermon) {
+                searchLifeForm = {
+                    ...searchLifeForm,
+                    type: 'glidermon',
+                }
+                if(verifyLifeFormPattern(searchLifeForm)) {
+                    spotLifeForm.glidermon = true
+                }
+            }
+
 
 
         }
@@ -275,7 +295,7 @@ export function generateRaderAnimationArr ({ type, isLifeForm = false }) {
     
     if(type === 'blockmon' || type === 'beehivemon' || type === 'loafmon'){
         duplicateFrames = 4
-    } else if (type === 'blinkermon' || type === 'toadmon') {
+    } else if (type === 'blinkermon' || type === 'toadmon' || type === 'beaconmon') {
         duplicateFrames = 2
     }
     let count = 0
