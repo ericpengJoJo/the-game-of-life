@@ -70,17 +70,6 @@ export function verifyLifeForm (gridState, lifeFormSpotedState){
     }
 
     let searchLifeForm = null;
-    // if(!lifeFormSpotedState.block) {
-    //     if(isBlockForm(gridState)) {
-    //         spotLifeForm.block = true
-    //     }
-    // }
-
-    // if(!lifeFormSpotedState.blinker) {
-    //     if(isBlinkerForm(gridState)) {
-    //         spotLifeForm.blinker = true
-    //     }
-    // }
 
     for(let i = 0;i < gridState.length - 1;i += 1) {
         const row = gridState[i]
@@ -119,6 +108,26 @@ export function verifyLifeForm (gridState, lifeFormSpotedState){
                 }
                 if(verifyLifeFormPattern(searchLifeForm)) {
                     spotLifeForm.beehivemon = true
+                }
+            }
+
+            if(!lifeFormSpotedState.loafmon) {
+                searchLifeForm = {
+                    ...searchLifeForm,
+                    type: 'loafmon',
+                }
+                if(verifyLifeFormPattern(searchLifeForm)) {
+                    spotLifeForm.loafmon = true
+                }
+            }
+
+            if(!lifeFormSpotedState.toadmon) {
+                searchLifeForm = {
+                    ...searchLifeForm,
+                    type: 'toadmon',
+                }
+                if(verifyLifeFormPattern(searchLifeForm)) {
+                    spotLifeForm.toadmon = true
                 }
             }
 
@@ -264,9 +273,9 @@ export function generateRaderAnimationArr ({ type, isLifeForm = false }) {
     }
     const { animation, color, name } = frameDetail;
     
-    if(type === 'blockmon' || type === 'beehivemon'){
+    if(type === 'blockmon' || type === 'beehivemon' || type === 'loafmon'){
         duplicateFrames = 4
-    } else if (type === 'blinkermon') {
+    } else if (type === 'blinkermon' || type === 'toadmon') {
         duplicateFrames = 2
     }
     let count = 0
