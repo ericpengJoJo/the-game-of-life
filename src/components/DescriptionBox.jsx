@@ -11,7 +11,7 @@ function DescriptionBox () {
         >
             <ContainerWrapper
                 width={(20 * 30) + 95}
-                height={200}
+                height={300}
             >
                 <div>Description</div>
             </ContainerWrapper>

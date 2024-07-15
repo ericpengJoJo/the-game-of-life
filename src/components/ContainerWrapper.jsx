@@ -5,7 +5,8 @@ function ContainerWrapper ({ children, width, height }) {
         <div
             style={{
                 display: 'flex',
-                justifyContent: 'center'
+                justifyContent: 'center',
+                marginBottom: 30
             }}
         >
             <div
@@ -15,7 +16,7 @@ function ContainerWrapper ({ children, width, height }) {
                     alignItems: 'center',
                     width: width,
                     height: height,
-                    backgroundColor: 'white',
+                    backgroundColor: '#FFFAFA',
                     border: '4px outset black',
                     borderRadius: 5
                 }}
@@ -27,7 +28,7 @@ function ContainerWrapper ({ children, width, height }) {
                         alignItems: 'center',
                         width: width,
                         height: height,
-                        backgroundColor: 'white',
+                        backgroundColor: '#FFFAFA',
                         borderLeft: '15px solid #03A9F4',
                         borderRight: '15px solid #03A9F4',
                     }}

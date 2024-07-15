@@ -91,7 +91,7 @@ export const lifeFormMaps = [
             height: 3,
             pattern: [{ x: 1, y: 0 }, { x: 2, y: 0 }, { x: 0, y: 1 }, { x: 3, y: 1 }, { x: 1, y: 2 }, { x: 2, y: 2 }]
         }],
-        difficulty: ['easy', 'normal'],
+        difficulty: ['easy'],
         animation: [{
             width: 7,
             height: 7,
@@ -334,7 +334,7 @@ export const raderLifeFormColors = {
 }
 
 export const searchingRaderAnimation = {
-    name: 'searching...',
+    name: 'searching',
     color:'#212121',
     animation: [{
         width: 7,

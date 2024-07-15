@@ -16,6 +16,8 @@ $reset-shadow-color:  #8C2022;
 
 
 .App {
+  margin: 0;
+  padding: 0;
   min-height: 100vh;
   padding-top: 35vh;
   text-align: center;
@@ -23,16 +25,93 @@ $reset-shadow-color:  #8C2022;
 }
 
 .gameheader {
-  // min-height: 100vh;
-  // padding-top: 40vh;
   font-family: "Press Start 2P", system-ui;
   display: flex;
-  // flex-direction: column;
-  // align-items: center;
   justify-content: center;
   font-size: 2vmin;
   color: black;
 }
+
+// Game Button Styling
+.eightbit-btn {
+  background: $button-background;
+  display: inline-block;
+  position: relative;
+  text-align: center;
+  font-size: 30px;
+  padding: 20px;
+  font-family: 'Press Start 2P', cursive;
+  text-decoration: none; 
+  color: #FFFAFA;
+  box-shadow: inset (-$shadow-width) (-$shadow-width) 0px 0px $shadow-color;
+
+  &:hover,
+  &:focus {
+      background: $sec-button-background;
+      box-shadow: inset (-$shadow-width*1.5) (-$shadow-width*1.5) 0px 0px $shadow-color;
+  }
+
+  &:active {
+      box-shadow: inset $shadow-width $shadow-width 0px 0px $shadow-color;
+  }
+
+  &:before,
+  &:after {
+  content: '';
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      box-sizing: content-box;
+  }
+
+  &:before {
+      top: -$outline-width;
+      left: 0;
+      border-top: $outline-width black solid;
+      border-bottom: $outline-width black solid;
+  }
+
+  &:after {
+      left: -$outline-width;
+      top: 0;
+      border-left: $outline-width black solid;
+      border-right: $outline-width black solid;
+  }
+
+  &--reset {
+      background: $reset-button-background;
+      box-shadow: inset (-$shadow-width) (-$shadow-width) 0px 0px $reset-shadow-color;
+
+      &:hover,
+      &:focus {
+          background: $reset-sec-button-background;
+          box-shadow: inset (-$shadow-width*1.5) (-$shadow-width*1.5) 0px 0px $reset-shadow-color;
+      }
+
+      &:active {
+          box-shadow: inset $shadow-width $shadow-width 0px 0px $reset-shadow-color;
+      }
+
+  }
+
+  &--random {
+      background: $alt-button-background;
+      box-shadow: inset (-$shadow-width) (-$shadow-width) 0px 0px $alt-shadow-color;
+
+      &:hover,
+      &:focus {
+          background: $alt-sec-button-background;
+          box-shadow: inset (-$shadow-width*1.5) (-$shadow-width*1.5) 0px 0px $alt-shadow-color;
+      }
+
+      &:active {
+          box-shadow: inset $shadow-width $shadow-width 0px 0px $alt-shadow-color;
+      }
+
+  }
+}
+
+
 
 // Game Display Pixel Dot
 .display-pixel-dot {
@@ -45,11 +124,16 @@ $reset-shadow-color:  #8C2022;
   background-color: black;
 }
 
+.pixel-white {
+  background-color: #FFFAFA;
+}
+
 .pixel-green {
   background-color: #689F38;
 }
 
 // Life Form Rader
+
 .rader-pixel-dot {
   width: 25px;
   height: 25px;
@@ -63,86 +147,39 @@ $reset-shadow-color:  #8C2022;
   font-style: normal;
 }
 
+.hint-font {
+  font-family: "Press Start 2P", system-ui;
+  font-weight: 400;
+  font-style: normal;
+  margin-bottom: 10px;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.difficulty-font {
+  font-family: "Press Start 2P", system-ui;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 20px;
+  font-weight: 900;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  color: #FFFAFA;
+}
+
+.diff-container {
+  display: flex;
+  justify-content: center;
+  width: 160px;
+  height: 40px;
+  border-radius: 15px;
+  margin-bottom: 10px;
+}
+
 .score-font {
   margin-top: 20;
 }
 
-// Button Styling
 
-.eightbit-btn {
-    background: $button-background;
-    display: inline-block;
-    position: relative;
-    text-align: center;
-    font-size: 30px;
-    padding: 20px;
-    font-family: 'Press Start 2P', cursive;
-    text-decoration: none; 
-    color: white;
-    box-shadow: inset (-$shadow-width) (-$shadow-width) 0px 0px $shadow-color;
 
-    &:hover,
-    &:focus {
-        background: $sec-button-background;
-        box-shadow: inset (-$shadow-width*1.5) (-$shadow-width*1.5) 0px 0px $shadow-color;
-    }
 
-    &:active {
-        box-shadow: inset $shadow-width $shadow-width 0px 0px $shadow-color;
-    }
-
-    &:before,
-    &:after {
-    content: '';
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        box-sizing: content-box;
-    }
-
-    &:before {
-        top: -$outline-width;
-        left: 0;
-        border-top: $outline-width black solid;
-        border-bottom: $outline-width black solid;
-    }
-
-    &:after {
-        left: -$outline-width;
-        top: 0;
-        border-left: $outline-width black solid;
-        border-right: $outline-width black solid;
-    }
-
-    &--reset {
-        background: $reset-button-background;
-        box-shadow: inset (-$shadow-width) (-$shadow-width) 0px 0px $reset-shadow-color;
-
-        &:hover,
-        &:focus {
-            background: $reset-sec-button-background;
-            box-shadow: inset (-$shadow-width*1.5) (-$shadow-width*1.5) 0px 0px $reset-shadow-color;
-        }
-
-        &:active {
-            box-shadow: inset $shadow-width $shadow-width 0px 0px $reset-shadow-color;
-        }
-
-    }
-
-    &--random {
-        background: $alt-button-background;
-        box-shadow: inset (-$shadow-width) (-$shadow-width) 0px 0px $alt-shadow-color;
-
-        &:hover,
-        &:focus {
-            background: $alt-sec-button-background;
-            box-shadow: inset (-$shadow-width*1.5) (-$shadow-width*1.5) 0px 0px $alt-shadow-color;
-        }
-
-        &:active {
-            box-shadow: inset $shadow-width $shadow-width 0px 0px $alt-shadow-color;
-        }
-
-    }
-}

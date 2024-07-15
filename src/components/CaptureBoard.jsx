@@ -13,12 +13,6 @@ function CaptureBoard () {
     }, [lifeFormSpoted])
 
     function handleLifeFormList () {
-        // const list = Object.entries(lifeFormSpoted).reduce((acc, cur) => {
-        //     if(cur[1]){
-        //         acc.push(cur[0])
-        //     }
-        //     return acc;
-        // }, [])
 
         const list = user.lifeFormList
         return list.map(name => (
@@ -61,7 +55,7 @@ function CaptureBoard () {
                         width: '100%',
                         height: 100,
                         backgroundColor: '#03A9F4',
-                        borderBottom: '4px solid white',
+                        borderBottom: '4px solid #FFFAFA',
                         fontWeight: 500,
                         color: 'white',
                         textAlign: 'space-around',
@@ -79,7 +73,7 @@ function CaptureBoard () {
                 <div
                     className='retro-game-font'
                     style={{
-                        backgroundColor: 'white',
+                        backgroundColor: '#FFFAFA',
                         width: '100%',
                         height: 488,
                         textAlign: 'left',
