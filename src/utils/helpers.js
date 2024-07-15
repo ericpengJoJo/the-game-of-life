@@ -68,8 +68,10 @@ export function verifyLifeForm (gridState, lifeFormSpotedState){
     const spotLifeForm = {
         ...lifeFormSpotedState
     }
-
+    let countScore = 0
+    const newCaptureLifeForm = []
     let searchLifeForm = null;
+    let lifeFormMap = null;
 
     for(let i = 0;i < gridState.length - 1;i += 1) {
         const row = gridState[i]
@@ -87,6 +89,11 @@ export function verifyLifeForm (gridState, lifeFormSpotedState){
                     type: 'blockmon',
                 }
                 if(verifyLifeFormPattern(searchLifeForm)) {
+                    if(!spotLifeForm.blockmon) {
+                        lifeFormMap = lifeFormMaps.filter(({name}) => name === 'blockmon')[0]
+                        countScore += lifeFormMap.points;
+                        newCaptureLifeForm.push(lifeFormMap.name)
+                    }
                     spotLifeForm.blockmon = true
                 }
             }
@@ -97,6 +104,11 @@ export function verifyLifeForm (gridState, lifeFormSpotedState){
                     type: 'blinkermon',
                 }
                 if(verifyLifeFormPattern(searchLifeForm)) {
+                    if(!spotLifeForm.blinkermon) {
+                        lifeFormMap = lifeFormMaps.filter(({name}) => name === 'blinkermon')[0]
+                        countScore += lifeFormMap.points;
+                        newCaptureLifeForm.push(lifeFormMap.name)
+                    }
                     spotLifeForm.blinkermon = true
                 }
             }
@@ -107,6 +119,11 @@ export function verifyLifeForm (gridState, lifeFormSpotedState){
                     type: 'beehivemon',
                 }
                 if(verifyLifeFormPattern(searchLifeForm)) {
+                    if(!spotLifeForm.beehivemon) {
+                        lifeFormMap = lifeFormMaps.filter(({name}) => name === 'beehivemon')[0]
+                        countScore += lifeFormMap.points;
+                        newCaptureLifeForm.push(lifeFormMap.name)
+                    }
                     spotLifeForm.beehivemon = true
                 }
             }
@@ -117,6 +134,11 @@ export function verifyLifeForm (gridState, lifeFormSpotedState){
                     type: 'loafmon',
                 }
                 if(verifyLifeFormPattern(searchLifeForm)) {
+                    if(!spotLifeForm.loafmon) {
+                        lifeFormMap = lifeFormMaps.filter(({name}) => name === 'loafmon')[0]
+                        countScore += lifeFormMap.points;
+                        newCaptureLifeForm.push(lifeFormMap.name)
+                    }
                     spotLifeForm.loafmon = true
                 }
             }
@@ -127,6 +149,11 @@ export function verifyLifeForm (gridState, lifeFormSpotedState){
                     type: 'toadmon',
                 }
                 if(verifyLifeFormPattern(searchLifeForm)) {
+                    if(!spotLifeForm.toadmon) {
+                        lifeFormMap = lifeFormMaps.filter(({name}) => name === 'toadmon')[0]
+                        countScore += lifeFormMap.points;
+                        newCaptureLifeForm.push(lifeFormMap.name)
+                    }
                     spotLifeForm.toadmon = true
                 }
             }
@@ -137,6 +164,11 @@ export function verifyLifeForm (gridState, lifeFormSpotedState){
                     type: 'beaconmon',
                 }
                 if(verifyLifeFormPattern(searchLifeForm)) {
+                    if(!spotLifeForm.beaconmon) {
+                        lifeFormMap = lifeFormMaps.filter(({name}) => name === 'beaconmon')[0]
+                        countScore += lifeFormMap.points;
+                        newCaptureLifeForm.push(lifeFormMap.name)
+                    }
                     spotLifeForm.beaconmon = true
                 }
             }
@@ -147,16 +179,24 @@ export function verifyLifeForm (gridState, lifeFormSpotedState){
                     type: 'glidermon',
                 }
                 if(verifyLifeFormPattern(searchLifeForm)) {
+                    if(!spotLifeForm.glidermon) {
+                        lifeFormMap = lifeFormMaps.filter(({name}) => name === 'glidermon')[0]
+                        countScore += lifeFormMap.points;
+                        newCaptureLifeForm.push(lifeFormMap.name)
+                    }
                     spotLifeForm.glidermon = true
                 }
             }
-
-
-
         }
     }
 
-    return spotLifeForm
+    console.log({newCaptureLifeForm})
+
+    return {
+        spotLifeForm,
+        newScore: countScore,
+        newCaptureList: newCaptureLifeForm
+    }
 }
 
 //////////////////////////////////////////////////////////////////////////Capture Life Form function/////////////////////////////////////////////////////////////////
@@ -273,7 +313,7 @@ export function generateRaderAnimationArr ({ type, isLifeForm = false }) {
     if (type === 'captured' && !isLifeForm) {
         const fullGrids = [];
         const emptyGrids = []
-        console.log("run generateGameBoard!!")
+
         for(let i = 0;i < 7; i += 1){
             fullGrids.push(Array.from(Array(7), () => 1));
             emptyGrids.push(Array.from(Array(7), () => 0));
@@ -383,126 +423,8 @@ function verifyLifeFormPattern ({ grids, type, currentX, currentY }) {
     return false;
 }
 
-export function isBlockForm (grids){
-
-    for(let i = 0;i < grids.length - 1;i += 1) {
-        const row = grids[i]
-        for(let j = 0;j < row.length - 1; j += 1){
-            const searchLifeForm = {
-                grids,
-                type: 'blockmon',
-                currentX: j,
-                currentY: i
-            }
-            if(verifyLifeFormPattern(searchLifeForm)) return true
-            // if([grids[i][j], grids[i][j + 1], grids[i + 1][j], grids[i + 1][j + 1]].every(num => num === 1)) {
-            //     console.log('Find Squire!!!', [i, j])
-            //     verifyLifeFormPattern({
-            //         grids,
-            //         type: 'blockmon',
-            //         currentX: j,
-            //         currentY: i
-            //     })
-            //     const position = locatedLifeForm(i, j, width, height, rowEnd, colEnd);
-
-            //     if (verifyFormWhiteSpace(grids, i, j, width, height, position)) return true
-            // }
-        }
-    }
-
-    return false
+//////////////////////////////////////////////////////////////////////////Global generic function/////////////////////////////////////////////////////////////////
+export function upperCaseFirstLetter(string) {
+    if (!string) return string;
+    return string.charAt(0).toUpperCase() + string.slice(1);
 }
-
-// export function isBlinkerForm (grids){
-//     const rowEnd = grids.length - 1
-//     const colEnd = grids[0].length - 1
-//     console.log('isBlinkerForm run!!! :', {rowEnd}, {colEnd})
-
-//     // find the black block first
-//     for(let i = 0;i < grids.length - 1;i += 1) {
-//         const row = grids[i]
-//         for(let j = 0;j < row.length - 1; j += 1){
-//             // stand up
-//             if([grids[i][j], grids[i + 1][j], grids[i + 2][j]].every(num => num === 1)) {
-//                 console.log('Find Blinker stand!!!', [i, j])
-//                 const position = locatedLifeForm(i, j, 1, 3, rowEnd, colEnd);
-//                 console.log({position})
-//                 console.log('verfiy white space result ===>', verifyFormWhiteSpace(grids, i, j, 1, 3, position))
-//                 // return boolean once find the first life Form
-//                 if (verifyFormWhiteSpace(grids, i, j, 1, 3, position)) return true
-//             }
-
-//             // lie down
-//             if([grids[i][j], grids[i][j + 1], grids[i][j + 2]].every(num => num === 1)) {
-//                 console.log('Find Blinker lie down!!!', [i, j])
-//                 const position = locatedLifeForm(i, j, 3, 1, rowEnd, colEnd);
-//                 console.log({position})
-//                 // console.log('verfiy white space result ===>', verifyFormWhiteSpace(grids, i, j, 3, 1, position))
-//                 // return boolean once find the first life Form
-//                 if (verifyFormWhiteSpace(grids, i, j, 3, 1, position)) return true
-//             }
-//         }
-//     }
-
-//     return false
-// }
-
-// store 
-// 
-/**
- * // 0 1 0
-//    1 0 1
-//    1 0 1
-//    0 1 0
- * beehive: {
- * x1y0, x0y1, x2y1, x0y2, x2y2, x1y3
- * x-0, x-2
- * x-
- * }
- * 
- */
-
-// export function isBeehiveForm (grids){
-//     const rowEnd = grids.length - 1
-//     const colEnd = grids[0].length - 1
-//     console.log('isBeehiveForm run!!! :', {rowEnd}, {colEnd})
-
-//     // find the black block first
-//     for(let i = 0;i < grids.length - 1;i += 1) {
-//         const row = grids[i]
-//         for(let j = 0;j < row.length - 1; j += 1){
-//             // stand up
-//             0 1 0
-//             1 0 1
-//             1 0 1
-//             0 1 0
-//             if([grids[i][j + 1], grids[i + 1][j], grids[i + 1][j + 2], grids[i + 2][j], grids[i + 2][j + 2], grids[i + 3][j + 1]].every(num => num === 1)) {
-//                 if([grids[i][j], grids[i][j + 2], grids[i + 1][j + 1], grids[i + 2][j + 1], grids[i + 3][j], grids[i + 3][j + 2]].every(num => num === 0)) {
-//                     console.log('Find Beehive stand!!!', [i, j])
-//                     const position = locatedLifeForm(i, j, 3, 4, rowEnd, colEnd);
-//                     console.log({position})
-//                     console.log('verfiy white space result ===>', verifyFormWhiteSpace(grids, i, j, 3, 4, position))
-//                     // return boolean once find the first life Form
-//                     if (verifyFormWhiteSpace(grids, i, j, 3, 4, position)) return true
-//                 }
-//             }
-
-//             // lie down
-//             // 0 1 1 0
-//             // 1 0 0 1
-//             // 0 1 1 0
-//             if([grids[i][j + 1], grids[i][j + 2], grids[i + 1][j], grids[i + 1][j + 3], grids[i + 2][j + 1], grids[i + 2][j + 2]].every(num => num === 1)) {
-//                 if([grids[i][j], grids[i][j + 3], grids[i + 1][j + 1], grids[i + 1][j + 2], grids[i + 2][j], grids[i + 2][j + 3]].every(num => num === 0)) {
-//                     console.log('Find Beehive lie down!!!', [i, j])
-//                     const position = locatedLifeForm(i, j, 4, 3, rowEnd, colEnd);
-//                     console.log({position})
-//                     // console.log('verfiy white space result ===>', verifyFormWhiteSpace(grids, i, j, 3, 1, position))
-//                     // return boolean once find the first life Form
-//                     if (verifyFormWhiteSpace(grids, i, j, 4, 3, position)) return true
-//                 }
-//             }
-//         }
-//     }
-
-//     return false
-// }

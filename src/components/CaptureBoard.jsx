@@ -1,23 +1,26 @@
 import React, { useEffect } from 'react';
 
 import { useGameContext } from '../context';
+import {  upperCaseFirstLetter } from '../utils/helpers'
 
 
 function CaptureBoard () {
     const { state } = useGameContext()
-    const { lifeFormSpoted } = state;
+    const { lifeFormSpoted, user } = state;
 
     useEffect(() => {
 
     }, [lifeFormSpoted])
 
     function handleLifeFormList () {
-        const list = Object.entries(lifeFormSpoted).reduce((acc, cur) => {
-            if(cur[1]){
-                acc.push(cur[0])
-            }
-            return acc;
-        }, [])
+        // const list = Object.entries(lifeFormSpoted).reduce((acc, cur) => {
+        //     if(cur[1]){
+        //         acc.push(cur[0])
+        //     }
+        //     return acc;
+        // }, [])
+
+        const list = user.lifeFormList
         return list.map(name => (
             <div
                 key={`list-${name}`}
@@ -25,10 +28,12 @@ function CaptureBoard () {
                 style={{
                     paddingLeft: 20,
                     paddingTop: 10,
-                    fontSize: 20
+                    fontSize: 20,
+                    marginBottom: 10,
+                    fontWeight: 'bold'
                 }}
             >
-                {name}
+                {upperCaseFirstLetter(name)}
             </div>
         ))
     }
@@ -56,14 +61,21 @@ function CaptureBoard () {
                         width: '100%',
                         height: 100,
                         backgroundColor: '#03A9F4',
-                        borderBottom: '4px solid black',
-                        display: 'flex',
-                        textAlign: 'center',
+                        borderBottom: '4px solid white',
+                        fontWeight: 500,
+                        color: 'white',
+                        textAlign: 'space-around',
                         paddingTop: 10,
-                        fontSize: 20,
-
+                        fontSize: 30,
                     }}
-                >You're beginner!</div>
+                >
+                    <div style={{
+                        marginTop: 5
+                    }}>Score:</div>
+                    <div style={{
+                        marginTop: 15
+                    }}>{user.score}</div>
+                </div>
                 <div
                     className='retro-game-font'
                     style={{

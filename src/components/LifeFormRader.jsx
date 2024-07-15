@@ -2,7 +2,11 @@ import React, { useEffect } from 'react'
 
 import { useGameContext } from '../context';
 import ContainerWrapper from './ContainerWrapper';
-import {generateRaderAnimationArr } from '../utils/helpers';
+import {
+    generateRaderAnimationArr,
+    upperCaseFirstLetter
+} from '../utils/helpers';
+
 
 
 
@@ -83,38 +87,50 @@ function LifeFormRader () {
     return (
         <ContainerWrapper
             width={(25 * 9) + 22}
-            height={(25 * 9) + 14}
+            height={(25 * 9) + 54}
         >
-            <div
-                style={{
-                    width: (25 * 7) + 2,
-                    height: (25 * 7) + 14,
-                    backgroundColor: 'orange',
-                    border: '4px solid black',
-                    borderRadius: 5
-                }}
-            >
+            <div>
                 <div
                     style={{
-                        display: 'grid',
-                        gridTemplateColumns: `repeat(${7}, 25px)`,
-                }}>
-                    {rader.map((rows, i) =>
-                            rows.map((col, j) => (
-                                <div
-                                    key={`rader-${i}-${j}`}
-                                    // className={`rader-pixel-dot ${rader[i][j] ? 'pixel-black' : ''}`}
-                                    className='rader-pixel-dot'
-                                    style={{
-                                        width: 25,
-                                        height: 25,
-                                        backgroundColor: col.color
-                                    }}                         
-                                />
-                            ))
-                        )
-                    }
+                        width: (25 * 7) + 2,
+                        height: (25 * 7) + 14,
+                        backgroundColor: 'orange',
+                        border: '4px solid black',
+                        borderRadius: 5
+                    }}
+                >
+                    <div
+                        style={{
+                            display: 'grid',
+                            gridTemplateColumns: `repeat(${7}, 25px)`,
+                    }}>
+                        {rader.map((rows, i) =>
+                                rows.map((col, j) => (
+                                    <div
+                                        key={`rader-${i}-${j}`}
+                                        // className={`rader-pixel-dot ${rader[i][j] ? 'pixel-black' : ''}`}
+                                        className='rader-pixel-dot'
+                                        style={{
+                                            width: 25,
+                                            height: 25,
+                                            backgroundColor: col.color
+                                        }}                         
+                                    />
+                                ))
+                            )
+                        }
+                    </div>
                 </div>
+                <div 
+                    className='retro-game-font'
+                    style={{
+                        marginTop: 20,
+                        fontSize: 20,
+                        fontWeight: 'bold',
+                        minHeight: 30,
+                        maxWidth: 150
+                    }}
+                >{upperCaseFirstLetter(rader[0][0].name)}</div>
             </div>
         </ContainerWrapper>
     )

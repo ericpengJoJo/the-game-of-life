@@ -48,9 +48,17 @@ const reducer = (state, action) => {
                 grid: randomizeGrids(action.payload.numRows, action.payload.numCols, action.payload.percentage)
             };
         case 'verifyLifeForm':
+            const { spotLifeForm, newScore, newCaptureList } = verifyLifeForm(state.grid, state.lifeFormSpoted)
+            const updateScore = state.user.score + newScore
+
             return {
                 ...state,
-                lifeFormSpoted: verifyLifeForm(state.grid, state.lifeFormSpoted)
+                lifeFormSpoted: spotLifeForm,
+                user: {
+                    ...state.user,
+                    score: updateScore,
+                    lifeFormList: [...state.user.lifeFormList, ...newCaptureList]
+                }
             }
         case 'setRader':
             return {

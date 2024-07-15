@@ -364,7 +364,7 @@ export const searchingRaderAnimation = {
 }
 
 export const transitionAnimations = {
-    name: '',
+    name: ' ',
     color: '#212121',
     animation: [{
         width: 7,
