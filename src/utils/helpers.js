@@ -202,6 +202,21 @@ export function verifyLifeForm (gridState, lifeFormSpotedState){
                     spotLifeForm.boatmon = true
                 }
             }
+            // tubmon
+            if(!lifeFormSpotedState.tubmon) {
+                searchLifeForm = {
+                    ...searchLifeForm,
+                    type: 'tubmon',
+                }
+                if(verifyLifeFormPattern(searchLifeForm)) {
+                    if(!spotLifeForm.tubmon) {
+                        lifeFormMap = lifeFormMaps.filter(({name}) => name === 'tubmon')[0]
+                        countScore += lifeFormMap.points;
+                        newCaptureLifeForm.push(lifeFormMap.name)
+                    }
+                    spotLifeForm.tubmon = true
+                }
+            }
         }
     }
 
@@ -348,7 +363,7 @@ export function generateRaderAnimationArr ({ type, isLifeForm = false }) {
     }
     const { animation, color, name } = frameDetail;
     
-    if(type === 'blockmon' || type === 'beehivemon' || type === 'loafmon' || type === 'boatmon'){
+    if(type === 'blockmon' || type === 'beehivemon' || type === 'loafmon' || type === 'boatmon' || type === 'tubmon'){
         duplicateFrames = 4
     } else if (type === 'blinkermon' || type === 'toadmon' || type === 'beaconmon') {
         duplicateFrames = 2
