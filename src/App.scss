@@ -14,16 +14,6 @@ $reset-button-background: #E76E55;
 $reset-sec-button-background: #CE372B;
 $reset-shadow-color:  #8C2022;
 
-
-.App {
-  margin: 0;
-  padding: 0;
-  min-height: 100vh;
-  padding-top: 35vh;
-  text-align: center;
-  align-items: center;
-}
-
 li {
   margin-bottom: 5px;
   font-weight: 800;
@@ -184,6 +174,72 @@ li {
 
 .score-font {
   margin-top: 20;
+}
+
+.win-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f0f0f0;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+.win-container.show {
+  opacity: 1;
+}
+
+.confetti {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.confetti-piece {
+  position: absolute;
+  width: 10px;
+  height: 20px;
+  background-color: #ffcc00;
+  opacity: 0;
+  animation: fall 1s infinite ease-in-out;
+}
+
+.confetti-piece:nth-child(1) {
+  left: 20%;
+  animation-delay: 0.1s;
+}
+
+.confetti-piece:nth-child(2) {
+  left: 40%;
+  animation-delay: 0.3s;
+}
+
+.confetti-piece:nth-child(3) {
+  left: 60%;
+  animation-delay: 0.5s;
+}
+
+.confetti-piece:nth-child(4) {
+  left: 80%;
+  animation-delay: 0.7s;
+}
+
+.confetti-piece:nth-child(5) {
+  left: 90%;
+  animation-delay: 0.9s;
+}
+
+@keyframes fall {
+  0% {
+      top: -10%;
+      opacity: 1;
+  }
+  100% {
+      top: 110%;
+      opacity: 0;
+  }
 }
 
 

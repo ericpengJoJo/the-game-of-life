@@ -10,7 +10,7 @@ import {
 //////////////////////////////////////////////////////////////////////////Dispatch function/////////////////////////////////////////////////////////////////
 export function generateEmptyGameBoard (rows = 25, cols = 50){
     const grids = [];
-    console.log("run generateGameBoard!!")
+
     for(let i = 0;i < rows; i += 1){
         grids.push(Array.from(Array(cols), () => 0));
     }
@@ -376,20 +376,7 @@ export function generateRaderAnimationArr ({ type, isLifeForm = false }) {
 
     return result;
 };
-/**
- * 
- * [
-    [0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0],
-    [0,0,0,0,0,1,1],
-    [0,0,0,0,0,1,1],
-    [0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,o],
-]
-    7,7
-[5,2]
- */
+
 function verifyLifeFormPattern ({ grids, type, currentX, currentY }) {
     const { shapes } = lifeFormMaps.filter(({name}) => name === type)[0];
     const rowEnd = grids.length - 1
@@ -425,6 +412,6 @@ function verifyLifeFormPattern ({ grids, type, currentX, currentY }) {
 
 //////////////////////////////////////////////////////////////////////////Global generic function/////////////////////////////////////////////////////////////////
 export function upperCaseFirstLetter(string) {
-    if (!string) return string;
+    if (typeof string !== 'string') return string;
     return string.charAt(0).toUpperCase() + string.slice(1);
 }

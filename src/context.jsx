@@ -18,7 +18,8 @@ const initialState = {
     user: {
         score: 0,
         lifeFormList: []
-    }
+    },
+    isWinning: false
 }
 
 const reducer = (state, action) => {
