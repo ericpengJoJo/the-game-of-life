@@ -1,16 +1,23 @@
 import React, { useEffect } from 'react';
+import useSound from 'use-sound';
 
 import { useGameContext } from '../context';
 import {  upperCaseFirstLetter } from '../utils/helpers'
+import blinkermonSound from '../sounds/lifeFormMon/blinkermonSound.mp3'
 
 
 function CaptureBoard () {
     const { state } = useGameContext()
     const { lifeFormSpoted, user } = state;
+    const [blinkermonRaw] = useSound(blinkermonSound);
 
-    useEffect(() => {
-
-    }, [lifeFormSpoted])
+    
+    function handleLifeFormSound (){
+        const newCapture = user.lifeFormList[user.lifeFormList.length - 1]
+        if (newCapture === 'blinkermon') {
+            blinkermonRaw()
+        }
+    }
 
     function handleLifeFormList () {
 
@@ -31,6 +38,11 @@ function CaptureBoard () {
             </div>
         ))
     }
+
+    useEffect(() => {
+        handleLifeFormSound()
+    }, [lifeFormSpoted])
+
 
     return (
         <div

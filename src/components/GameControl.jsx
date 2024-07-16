@@ -1,7 +1,12 @@
 import { useGameContext } from '../context';
 import '../App.scss';
-import React, { useState, useRef, useCallback } from 'react';;
+import useSound from 'use-sound';
+import clickSound from '../sounds/click.mp3'
+import eletricSound from '../sounds/eletricClick.mp3'
+import pauseSound from '../sounds/pauseClick.mp3'
+import resetSound from '../sounds/reset.mp3'
 
+import React, { useState, useRef, useCallback } from 'react';;
 
 function GameControl({
     numRows,
@@ -14,8 +19,13 @@ function GameControl({
     const [running, setRunning] = useState(false);
     const runningRef = useRef(running);
     runningRef.current = running;
+    const [playClick] = useSound(clickSound);
+    const [pauseClick] = useSound(pauseSound);
+    const [randomizeClick] = useSound(eletricSound);
+    const [resetClick] = useSound(resetSound);
 
     function handleRandomizeGrids () {
+        randomizeClick()
         dispatch({
             type: 'randomizeGrids',
             payload: {
@@ -43,12 +53,14 @@ function GameControl({
     }, [dispatch]);
 
     const handleVerifyLifeForm = () => {
+        pauseClick()
         dispatch({
             type: 'verifyLifeForm'
         })
     }
 
     const handleReset = () => {
+        resetClick()
         dispatch({
             type: 'reset',
         })
@@ -77,7 +89,8 @@ function GameControl({
                     onClick={() => {
                         setRunning(!running);
                         if (!running) {
-                            runningRef.current = true;
+                            runningRef.current = true;  
+                            playClick()
                             handleRunSimulation();
                         } else {
                             handleVerifyLifeForm()

@@ -10,6 +10,7 @@ function App() {
     <GameProvider>
       <CenteredContainer>
         <div className="App">
+          {/* <WinAnimation /> */}
           <header className="gameheader">
             <h1>Conway's Game of Life</h1>
           </header>

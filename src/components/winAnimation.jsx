@@ -20,6 +20,21 @@ const WinAnimation = () => {
                 <div className="confetti-piece"></div>
                 <div className="confetti-piece"></div>
                 <div className="confetti-piece"></div>
+                <div className="confetti-piece"></div>
+                <div className="confetti-piece"></div>
+                <div className="confetti-piece"></div>
+                <div className="confetti-piece"></div>
+                <div className="confetti-piece"></div>
+                <div className="confetti-piece"></div>
+                <div className="confetti-piece"></div>
+                <div className="confetti-piece"></div>
+                <div className="confetti-piece"></div>
+                <div className="confetti-piece"></div>
+                <div className="confetti-piece"></div>
+                <div className="confetti-piece"></div>
+                <div className="confetti-piece"></div>
+                <div className="confetti-piece"></div>
+                <div className="confetti-piece"></div>
             </div>
             <h1>Congratulations! You Win!</h1>
         </div>

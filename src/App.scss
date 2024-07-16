@@ -14,6 +14,14 @@ $reset-button-background: #E76E55;
 $reset-sec-button-background: #CE372B;
 $reset-shadow-color:  #8C2022;
 
+
+.App {
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  align-items: center;
+}
+
 li {
   margin-bottom: 5px;
   font-weight: 800;

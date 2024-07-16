@@ -21,18 +21,6 @@ export const defaultLifeFormSpoted = {
     glidermon: false
 }
 
-/**
- * [
-    [0,0,0,0,0,0,0],
-    [0,1,1,1,1,1,0],
-    [0,1,1,1,1,1,0],
-    [0,1,1,1,1,1,0],
-    [0,1,1,1,1,1,0],
-    [0,1,1,1,1,1,0],
-    [0,0,0,0,0,0,0],
-]
- */
-
 export const lifeFormMaps = [
     {
         name: 'blockmon',
@@ -97,6 +85,35 @@ export const lifeFormMaps = [
             height: 7,
             pattern: [
                 { x:2, y:0 }, { x:3, y:0 }, { x:4, y:0 }, { x:1, y:1 }, { x:5, y:1 }, { x:1, y:2 }, { x:5, y:2 }, { x:1, y:3 }, { x:5, y:3 }, { x:1, y:4 }, { x:5, y:4 }, { x:1, y:5 }, { x:5, y:5 }, { x:2, y:6 }, { x:3, y:6 }, { x:4, y:6 }
+            ]
+        }]
+    }, {
+        name: 'boatmon',
+        color: '#455A64',
+        points: 200,
+        shapes:[{
+            width: 3,
+            height: 3,
+            pattern: [{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 0, y: 1 }, { x: 2, y: 1 }, { x: 1, y: 2 }]
+        }, {
+            width: 3,
+            height: 3,
+            pattern: [{ x: 1, y: 0 }, { x: 2, y: 0 }, { x: 0, y: 1 }, { x: 2, y: 1 }, { x: 1, y: 2 }]
+        }, {
+            width: 3,
+            height: 3,
+            pattern: [{ x: 1, y: 0 }, { x: 0, y: 1 }, { x: 2, y: 1 }, { x: 0, y: 2 }, { x: 1, y: 2 }]
+        }, {
+            width: 3,
+            height: 3,
+            pattern: [{ x: 1, y: 0 }, { x: 0, y: 1 }, { x: 2, y: 1 }, { x: 1, y: 2 }, { x: 2, y: 2 }]
+        }],
+        difficulty: ['easy', 'normal'],
+        animation: [{
+            width: 7,
+            height: 7,
+            pattern: [
+                { x:0, y:0 }, { x:1, y:0 }, { x:2, y:0 }, { x:3, y:0 }, { x:0, y:1 }, { x:1, y:1 }, { x:2, y:1 }, { x:3, y:1 }, { x:0, y:2 }, { x:1, y:2 }, { x:4, y:2 }, { x:5, y:2 }, { x:0, y:3 }, { x:1, y:3 }, { x:4, y:3 }, { x:5, y:3 }, { x:2, y:4 }, { x:3, y:4 }, { x:2, y:5 }, { x:3, y:5 }
             ]
         }]
     }, {
