@@ -110,7 +110,7 @@ function ExampleBox () {
     return (
         <div
             style={{
-                marginLeft: 150
+                marginLeft: 50
             }}
         >
             <ContainerWrapper

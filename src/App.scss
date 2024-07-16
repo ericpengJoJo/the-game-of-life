@@ -24,6 +24,12 @@ $reset-shadow-color:  #8C2022;
   align-items: center;
 }
 
+li {
+  margin-bottom: 5px;
+  font-weight: 800;
+  line-height: 1.7;
+}
+
 .gameheader {
   font-family: "Press Start 2P", system-ui;
   display: flex;
