@@ -273,7 +273,7 @@ export function locatedLifeForm (
     return lifeFormPosition.center;
 }
 
-export function verifyLifeFormSuroundWhiteSpace (
+export function verifyLifeFormSurroundWhiteSpace (
     grids,
     rowIdx,
     colIdx,
@@ -429,7 +429,7 @@ function verifyLifeFormPattern ({ grids, type, currentX, currentY }) {
                 if(emptyGrids.length === 0 || emptyGrids.every(num => num === 0)) {
                     const position = locatedLifeForm(currentY, currentX, shape.width, shape.height, rowEnd, colEnd);
     
-                    if (verifyLifeFormSuroundWhiteSpace(grids, currentY, currentX, shape.width, shape.height, position)) return true
+                    if (verifyLifeFormSurroundWhiteSpace(grids, currentY, currentX, shape.width, shape.height, position)) return true
                 }
             }
         }

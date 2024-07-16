@@ -7,10 +7,11 @@ import {
     generateEmptyGameBoard,
     verifyLifeForm,
     locatedLifeForm,
-    verifyLifeFormSuroundWhiteSpace
+    verifyLifeFormSurroundWhiteSpace
 } from '../utils/helpers'
 import {
-    mockGenerateEmptyGameBoardData
+    mockGenerateEmptyGameBoardData,
+    surroundWhiteSpaceTestCases
 } from './mock/helpersMock';
 
 
@@ -50,10 +51,13 @@ describe('locatedLifeForm function tests', () => {
     }
 })
 
-describe('generateEmptyGameBoard function tests', () => {
-    test('generateEmptyGameBoard generate the correct amount of nested arrays with custom argument', () => {
-      expect(JSON.stringify(generateEmptyGameBoard(5, 5))).toBe(JSON.stringify(mockGenerateEmptyGameBoardData.customArg));
-    });
+describe('verifyLifeFormSurroundWhiteSpace function tests', () => {
+
+    for (const { args, checkArea, expected } of surroundWhiteSpaceTestCases) {
+        test(`verifyLifeFormSurroundWhiteSpace with rows 5, cols 5, current location x:${args[2]}, y:${args[1]} for ${checkArea} should return ${expected}`, () => {
+            expect(verifyLifeFormSurroundWhiteSpace(...args)).toBe(expected);
+        });
+    }
 })
 
 
