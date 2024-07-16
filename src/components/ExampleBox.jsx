@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
+import useSound from 'use-sound';
 
 import { useGameContext } from '../context';
 import ContainerWrapper from './ContainerWrapper';
-import { lifeFormMaps, winningAnimation } from '../instance';
+import { lifeFormMaps, noMoreHint } from '../instance';
+import hintClickSound from '../sounds/hintClick.mp3'
 import {
     upperCaseFirstLetter
 } from '../utils/helpers';
@@ -17,6 +19,7 @@ function ExampleBox () {
         pattern:[]
     })
     const { user } = state;
+    const [hintClick] = useSound(hintClickSound);
 
     function generateExamples () {
         return lifeFormMaps.reduce((acc, cur) => {
@@ -83,6 +86,7 @@ function ExampleBox () {
     }
 
     function handleClick () {
+        hintClick()
         if (examples.currentIdx + 1 > examples.lifeFormDetails.length - 1){
             return setExamples({
                 ...examples,
@@ -98,7 +102,7 @@ function ExampleBox () {
     useEffect(() => {
         const exampleArr = generateExamples()
         console.log({exampleArr})
-        const patterArr = exampleArr.length > 0 ? exampleArr[examples.currentIdx]?.pattern : winningAnimation[examples.currentIdx]
+        const patterArr = exampleArr.length > 0 ? exampleArr[examples.currentIdx]?.pattern : noMoreHint
         setExamples({
             ...examples,
             lifeFormDetails: exampleArr,
@@ -120,6 +124,7 @@ function ExampleBox () {
             >
                 <div
                     onClick={() => handleClick()}
+                    className='hover-button'
                 >
                     <div className='hint-font'>HINT!</div>
                     <div
@@ -144,7 +149,7 @@ function ExampleBox () {
                             display: 'grid',
                             gridTemplateColumns: `repeat(${6}, 25px)`,
                     }}>
-                        {examples?.pattern.map((rows, i) =>
+                        {Object.values(examples).length > 0 && examples?.pattern.map((rows, i) =>
                             rows.map((col, j) => (
                                 <div
                                     key={`expample-${i}-${j}`}

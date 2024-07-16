@@ -77,9 +77,6 @@ function GameControl({
             <div style={{
                 height: 150,
                 width: 20 * 50,
-                backgroundColor: 'white',
-                // border: 'solid 1px black',
-                // borderRadius: 5,
                 display: 'flex',
                 justifyContent: 'space-around',
                 alignItems: 'center'

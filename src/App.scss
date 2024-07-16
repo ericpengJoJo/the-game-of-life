@@ -28,6 +28,10 @@ li {
   line-height: 1.7;
 }
 
+.hover-button {
+  cursor: pointer;
+}
+
 .gameheader {
   font-family: "Press Start 2P", system-ui;
   display: flex;
@@ -48,6 +52,7 @@ li {
   text-decoration: none; 
   color: #FFFAFA;
   box-shadow: inset (-$shadow-width) (-$shadow-width) 0px 0px $shadow-color;
+  cursor: pointer;
 
   &:hover,
   &:focus {
@@ -184,12 +189,46 @@ li {
   margin-top: 20;
 }
 
+//////////////////////////////////////win game css/////////////////////////////////
+
+.win-font {
+  position: absolute;
+  font-family: "Press Start 2P", system-ui;
+  font-weight: 900;
+  font-style: normal;
+  font-size: 50px;
+  line-height: 1.5;
+
+}
+
+.fade-text {
+  opacity: 0;
+  animation: fade-in-out 5s infinite;
+}
+
+@keyframes fade-in-out {
+  0% {
+    opacity: 0;
+  }
+  25% {
+    opacity: 1;
+  }
+  75% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
 .win-container {
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 100vw;
   height: 100vh;
-  background-color: #f0f0f0;
+  text-align: center;
+  background-color: #FDFBD4;
   opacity: 0;
   transition: opacity 1s ease-in-out;
 }
@@ -216,6 +255,7 @@ li {
 
 .confetti-piece:nth-child(1) {
   left: 20%;
+  // right: 20%;
   animation-delay: 0.1s;
 }
 

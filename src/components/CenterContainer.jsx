@@ -4,6 +4,7 @@ const CenteredContainer = ({ children }) => {
   const containerStyle = {
     display: 'grid',
     placeItems: 'center',
+    backgroundColor: '#FDFBD4',
     width: '100vw',
     height: '100vh',
   };

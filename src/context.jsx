@@ -72,6 +72,11 @@ const reducer = (state, action) => {
                 ...state,
                 soundPlayed:[...state.soundPlayed, action.payload]
             }
+        case 'setWin':
+            return {
+                ...state,
+                hasWin: true
+            }
         default:
             throw new Error(`Unknown action: ${action.type}`);
     }
