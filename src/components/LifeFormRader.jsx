@@ -56,20 +56,15 @@ function LifeFormRader () {
                 animatedArr.push(...generateRaderAnimationArr({
                     type: 'transition',
                 }))
-                console.log('transtionAnimation: ', generateRaderAnimationArr({
-                    type: 'transition',
-                }))
             }
-            console.log({animatedArr})
         }
         runAnimation(animatedArr);
 
         return () => clearInterval(intervalId);
     }
     useEffect(() => {
-
         const clearAnimation = raderAnimation()
-        console.log('print lifeFormSpoted ===>', lifeFormSpoted)
+
         return () => {
             if (intervalId) {
                 clearInterval(intervalId);
@@ -78,8 +73,6 @@ function LifeFormRader () {
                 clearAnimation();
             }
         }
-
-        
 
     }, [lifeFormSpoted])
 

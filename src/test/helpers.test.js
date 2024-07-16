@@ -48,7 +48,12 @@ describe('locatedLifeForm function tests', () => {
             expect(locatedLifeForm(...args)).toBe(expected);
         });
     }
+})
 
+describe('generateEmptyGameBoard function tests', () => {
+    test('generateEmptyGameBoard generate the correct amount of nested arrays with custom argument', () => {
+      expect(JSON.stringify(generateEmptyGameBoard(5, 5))).toBe(JSON.stringify(mockGenerateEmptyGameBoardData.customArg));
+    });
 })
 
 

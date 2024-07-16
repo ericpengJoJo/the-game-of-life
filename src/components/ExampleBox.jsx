@@ -101,7 +101,6 @@ function ExampleBox () {
 
     useEffect(() => {
         const exampleArr = generateExamples()
-        console.log({exampleArr})
         const patterArr = exampleArr.length > 0 ? exampleArr[examples.currentIdx]?.pattern : noMoreHint
         setExamples({
             ...examples,
