@@ -25,7 +25,6 @@ function GameDisplay ({ numCols }){
                     width: (20 * 50) + 3,
                     height: (20 * 28) + 5,
                     backgroundColor: '#8BC34A',
-                    // margin: 15,
                     border: '8px solid black'
                 }}
             >

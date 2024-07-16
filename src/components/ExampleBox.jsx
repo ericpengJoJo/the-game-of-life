@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 import { useGameContext } from '../context';
 import ContainerWrapper from './ContainerWrapper';
-import { lifeFormMaps } from '../instance';
+import { lifeFormMaps, winningAnimation } from '../instance';
 import {
     upperCaseFirstLetter
 } from '../utils/helpers';
@@ -63,7 +63,7 @@ function ExampleBox () {
         const color = {
             easy: '#03A9F4',
             normal: '#92CD41',
-            hard: 'E76E55'
+            hard: '#E76E55'
         }
         if (capturedNum < 3) {
             return {
@@ -83,7 +83,6 @@ function ExampleBox () {
     }
 
     function handleClick () {
-        console.log('examples.lifeFormDetails', examples.lifeFormDetails, examples.currentIdx, examples.lifeFormDetails.length - 1)
         if (examples.currentIdx + 1 > examples.lifeFormDetails.length - 1){
             return setExamples({
                 ...examples,
@@ -98,11 +97,11 @@ function ExampleBox () {
 
     useEffect(() => {
         const exampleArr = generateExamples()
-        console.log('show example: ', exampleArr)
+        const patterArr = exampleArr.length > 0 ? exampleArr[examples.currentIdx]?.pattern : winningAnimation[examples.currentIdx]
         setExamples({
             ...examples,
             lifeFormDetails: exampleArr,
-            pattern:exampleArr[examples.currentIdx].pattern
+            pattern:patterArr
         })
 
     }, [state.lifeFormSpoted, examples.currentIdx])
@@ -144,15 +143,14 @@ function ExampleBox () {
                             display: 'grid',
                             gridTemplateColumns: `repeat(${6}, 25px)`,
                     }}>
-                        {examples.pattern.map((rows, i) =>
-                                rows.map((col, j) => (
-                                    <div
-                                        key={`expample-${i}-${j}`}
-                                        className={`rader-pixel-dot ${examples.pattern[i][j] ? 'pixel-white' : ''}`}                    
-                                    />
-                                ))
-                            )
-                        }
+                        {examples?.pattern.map((rows, i) =>
+                            rows.map((col, j) => (
+                                <div
+                                    key={`expample-${i}-${j}`}
+                                    className={`rader-pixel-dot ${examples.pattern[i][j] ? 'pixel-white' : ''}`}                    
+                                />
+                            ))
+                        )}
                     </div>
                     
                 </div>

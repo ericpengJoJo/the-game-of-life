@@ -30,7 +30,6 @@ function LifeFormRader () {
             }
             return acc
         }, [])
-        console.log({lifeFormsArr})
 
         function runAnimation (animationArr) {
             let count = 0;
@@ -108,7 +107,6 @@ function LifeFormRader () {
                                 rows.map((col, j) => (
                                     <div
                                         key={`rader-${i}-${j}`}
-                                        // className={`rader-pixel-dot ${rader[i][j] ? 'pixel-black' : ''}`}
                                         className='rader-pixel-dot'
                                         style={{
                                             width: 25,
