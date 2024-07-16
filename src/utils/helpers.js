@@ -202,7 +202,7 @@ export function verifyLifeForm (gridState, lifeFormSpotedState){
                     spotLifeForm.boatmon = true
                 }
             }
-            // tubmon
+
             if(!lifeFormSpotedState.tubmon) {
                 searchLifeForm = {
                     ...searchLifeForm,
@@ -275,7 +275,7 @@ function locatedLifeForm (
     return lifeFormPosition.center;
 }
 
-function verifyFormWhiteSpace (
+function verifyLifeFormSuroundWhiteSpace (
     grids,
     rowIdx,
     colIdx,
@@ -431,7 +431,7 @@ function verifyLifeFormPattern ({ grids, type, currentX, currentY }) {
                 if(emptyGrids.length === 0 || emptyGrids.every(num => num === 0)) {
                     const position = locatedLifeForm(currentY, currentX, shape.width, shape.height, rowEnd, colEnd);
     
-                    if (verifyFormWhiteSpace(grids, currentY, currentX, shape.width, shape.height, position)) return true
+                    if (verifyLifeFormSuroundWhiteSpace(grids, currentY, currentX, shape.width, shape.height, position)) return true
                 }
             }
         }

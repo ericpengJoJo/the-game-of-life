@@ -19,7 +19,8 @@ const initialState = {
         score: 0,
         lifeFormList: []
     },
-    isWinning: false
+    soundPlayed:[],
+    hasWin: false
 }
 
 const reducer = (state, action) => {
@@ -65,6 +66,11 @@ const reducer = (state, action) => {
             return {
                 ...state,
                 rader: action.payload
+            }
+        case 'setSoundPlayed':
+            return {
+                ...state,
+                soundPlayed:[...state.soundPlayed, action.payload]
             }
         default:
             throw new Error(`Unknown action: ${action.type}`);

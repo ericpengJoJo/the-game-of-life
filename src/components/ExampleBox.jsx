@@ -97,6 +97,7 @@ function ExampleBox () {
 
     useEffect(() => {
         const exampleArr = generateExamples()
+        console.log({exampleArr})
         const patterArr = exampleArr.length > 0 ? exampleArr[examples.currentIdx]?.pattern : winningAnimation[examples.currentIdx]
         setExamples({
             ...examples,
