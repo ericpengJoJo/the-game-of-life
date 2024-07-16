@@ -230,7 +230,7 @@ export function verifyLifeForm (gridState, lifeFormSpotedState){
 }
 
 //////////////////////////////////////////////////////////////////////////Capture Life Form function/////////////////////////////////////////////////////////////////
-function locatedLifeForm (
+export function locatedLifeForm (
     rowIdx,
     colIdx,
     formWide,
@@ -275,7 +275,7 @@ function locatedLifeForm (
     return lifeFormPosition.center;
 }
 
-function verifyLifeFormSuroundWhiteSpace (
+export function verifyLifeFormSuroundWhiteSpace (
     grids,
     rowIdx,
     colIdx,
@@ -429,6 +429,7 @@ function verifyLifeFormPattern ({ grids, type, currentX, currentY }) {
 
             if(fillGrids.every(num => num === 1)) {
                 if(emptyGrids.length === 0 || emptyGrids.every(num => num === 0)) {
+                    console.log('show locatedLifeForm(0, 0, 2, 2, 24, 49): ', locatedLifeForm(0, 0, 2, 2, 24, 49))
                     const position = locatedLifeForm(currentY, currentX, shape.width, shape.height, rowEnd, colEnd);
     
                     if (verifyLifeFormSuroundWhiteSpace(grids, currentY, currentX, shape.width, shape.height, position)) return true
