@@ -26,7 +26,6 @@ const WinAnimation = () => {
     }, [playWinBGM, stop])
 
     useEffect(() => {
-        // Simulate winning the game after 2 seconds
         const timer = setTimeout(() => {
             setShowAnimation(true);
         }, 2000);
