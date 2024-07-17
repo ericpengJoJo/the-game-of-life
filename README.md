@@ -4,10 +4,10 @@
 
 - [About](#-about)
 - [How to Build](#-how-to-build)
-- [Feature](#-feature)
-- [Documentation](#-documentation)
-- [Feedback and Contributions](#-feedback-and-contributions)
+- [Features](#-features)
+- [Roadmap](#-roadmap)
 - [Project Journey](#-project-journey)
+- [License](#-license)
 - [Contacts](#%EF%B8%8F-contacts)
 
 ## 🚀 About
@@ -29,33 +29,45 @@ For my project, I want to pay respect to John Horton Conway's work and also prov
 
 In my game, there are a total of 9 available life-form-mons for you to capture. I will go into more detail in the Features section. I hope you enjoy the experience.
 
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 ## 🎨 How to Build
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+1. Clone the repo
+   ```sh
+   git clone https://github.com/ericpengJoJo/the-game-of-life.git
+   ```
+2. Install NPM packages
+   ```sh
+   npm install
+   ```
+3. Run the app
+   ```sh
+   npm start
+   ```
+4. Run the tests
+   ```sh
+   npm test
+   ```
+   <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-## Available Scripts
+## 🕹️ Features
 
-In the project directory, you can run:
+- Toggle between alive and dead cells by clicking on the grid table when it's not running.
+- Living cells generate automatically according to the Game of Life rules when you click the **Start Game** button.
+- Pause the game and snap a picture of the life-form-mon by clicking the **Pause Game** button.
+- Randomize and generate living cells on the grid table by clicking the **Randomize button**.
+- Reset the game to its initial state by clicking the **Reset** button.
+- Click on the **Hint** box to learn what available life-form-mons can be created.
+- Unlock more life-form-mon data in the **Hint** box and unlock difficulty by capturing more life-form-mons.
+- Observe your captured life-form-mons' animations in the life-formdex.
+- List your captured life-form-mons and your score.
+- Display a win game animation after capturing all available life-form-mons.
 
-### `npm start`
+![Game of Life Main Page](./src/img/life-form-mon-main-page.png)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 🌱 Project Journey
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Day 1
