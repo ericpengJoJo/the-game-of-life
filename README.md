@@ -8,7 +8,7 @@
 - [Roadmap](#-roadmap)
 - [Project Journey](#-project-journey)
 - [License](#-license)
-- [Contact](-contact)
+- [Contact](#-contact)
 
 ## 🚀 About
 
