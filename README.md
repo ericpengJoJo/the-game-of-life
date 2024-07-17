@@ -8,11 +8,11 @@
 - [Roadmap](#-roadmap)
 - [Project Journey](#-project-journey)
 - [License](#-license)
-- [Contacts](#%EF%B8%8F-contacts)
+- [Contact](-contact)
 
 ## 🚀 About
 
-**Conway's Game of Life** is a fascinating example of a cellular automaton devised by British mathematician John Horton Conway in 1970. Despite its simplicity, it exhibits complex and often unexpected behaviors, making it a subject of interest in various fields such as mathematics, computer science, and artificial life.
+**[Conway's Game of Life](https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life)** is a fascinating example of a cellular automaton devised by British mathematician John Horton Conway in 1970. Despite its simplicity, it exhibits complex and often unexpected behaviors, making it a subject of interest in various fields such as mathematics, computer science, and artificial life.
 
 ![Game of Life Ecosystem](./src/img/game-of-life-eco.png)
 
@@ -25,7 +25,7 @@ Imagine each grid square you see above represents a cell. The dark green square 
 
 What makes **Conway's Game of Life** fascinating is that you can create something mesmerizing by applying these rules to every cell simultaneously. Originally, there is no winning or losing in this game. You can create and kill a cell by clicking on the squares on the board and simply observe the infinite possibilities of cellular automation. Try to discover various stable patterns within the grid.
 
-For my project, I want to pay respect to John Horton Conway's work and also provide users familiar with **Conway's Game of Life** a new experience. My biggest inspiration is Pokemon Snap (a video game from Nintendo 64 in 1999) and the Pokedex from the Pokemon video game franchise. In Pokemon Snap, players are on a non-stop vehicle, and their main goal is to take pictures of Pokemon that only appear on the screen for a limited amount of time. Players can earn more points if they take a good picture. The Pokedex allows players to keep track of the Pokemon they've seen and caught in the game.
+For my project, I want to pay respect to John Horton Conway's work and also provide users familiar with **Conway's Game of Life** a new experience. My biggest inspiration is [Pokemon Snap](https://pokemon.fandom.com/wiki/Pok%C3%A9mon_Snap) (a video game from Nintendo 64 in 1999) and the Pokedex from the [Pokemon](<https://en.wikipedia.org/wiki/Pok%C3%A9mon_(video_game_series)>) video game franchise. In Pokemon Snap, players are on a non-stop vehicle, and their main goal is to take pictures of Pokemon that only appear on the screen for a limited amount of time. Players can earn more points if they take a good picture. The Pokedex allows players to keep track of the Pokemon they've seen and caught in the game.
 
 In my game, there are a total of 9 available life-form-mons for you to capture. I will go into more detail in the Features section. I hope you enjoy the experience.
 
@@ -68,9 +68,24 @@ In my game, there are a total of 9 available life-form-mons for you to capture. 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-## 🌱 Project Journey
+## 🎯 Roadmap
 
-### Day 1
+- [x] Add Life Form-dex showcase captured life forms
+- [x] Add Score System
+- [x] Add Difficulty System
+- [x] Add Hint Box for life form creation
+- [x] Add Win Animation after players capture all life forms
+- [ ] increase score cap and allow players to capture same species multiple times
+- [ ] Speed up automation when increase difficulty
+- [ ] Lose game animation when players did not capture all life forms in time
+- [ ] Add Log in screen for player to input name and pick a starter life form
+- [ ] Add more Life Form-mons
+- [ ] Add local leaderboard
+- [ ] Add in game custom cursor
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+## 🌱 Project Journey
 
 After some research and experimenting with other developers' Game of Life projects online, I was reminded of my experience in biology class, observing living cells through a microscope and recording their patterns of activity. While it was fascinating to observe, it can also be quite boring for people who aren't into biology and cannot distinguish what they are looking at. For Conway's Game of Life, I think the biggest issue is that it might not be an appealing game for people who aren't developers, despite it being able to create so many patterns of life forms through cellular automation. To learn more about their perspective, I decided to get some feedback from friends who aren't developers.
 
@@ -147,5 +162,17 @@ I had multiple ideas on how to showcase the win animation once the players captu
 </details>
 
 Overall, this project demonstrates a balance between creating an engaging user experience and maintaining scalability and performance. I hope you can appreciate my vision after trying out the application. Thank you for reading.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+## 🌟 License
+
+This project is for US Mobile job interview only.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+## 🌌 Contact
+
+Eric Peng - ericpengjojo@gmail.com
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
