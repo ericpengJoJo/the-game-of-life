@@ -1,18 +1,18 @@
-// src/App.test.js
-import React from 'react';
-import { render, screen } from '@testing-library/react';
-import { lifeFormPosition } from '../instance';
 import {
     upperCaseFirstLetter,
     generateEmptyGameBoard,
     verifyLifeForm,
     locatedLifeForm,
-    verifyLifeFormSurroundWhiteSpace
+    verifyLifeFormSurroundWhiteSpace,
+    generateRaderAnimationArr
 } from '../utils/helpers'
 import {
     mockGenerateEmptyGameBoardData,
-    surroundWhiteSpaceTestCases
+    locatedLifeFormTestCases,
+    surroundWhiteSpaceTestCases,
+    mockGenerateRaderAnimationArrData
 } from './mock/helpersMock';
+
 
 
 describe('upperCaseFirstLetter function tests', () => {
@@ -32,19 +32,7 @@ describe('generateEmptyGameBoard function tests', () => {
 })
 
 describe('locatedLifeForm function tests', () => {
-    const testCases = [
-        { args: [0, 0, 2, 2, 24, 49], expected: lifeFormPosition.topLeft },
-        { args: [0, 48, 2, 2, 24, 49], expected: lifeFormPosition.topRight },
-        { args: [0, 12, 2, 2, 24, 49], expected: lifeFormPosition.top },
-        { args: [23, 0, 2, 2, 24, 49], expected: lifeFormPosition.bottomLeft },
-        { args: [23, 48, 2, 2, 24, 49], expected: lifeFormPosition.bottomRight },
-        { args: [23, 35, 2, 2, 24, 49], expected: lifeFormPosition.bottom },
-        { args: [14, 48, 2, 2, 24, 49], expected: lifeFormPosition.right },
-        { args: [14, 0, 2, 2, 24, 49], expected: lifeFormPosition.left },
-        { args: [10, 32, 2, 2, 24, 49], expected: lifeFormPosition.center },
-    ];
-
-    for (const { args, expected } of testCases) {
+    for (const { args, expected } of locatedLifeFormTestCases) {
         test(`locatedLifeForm(${args}) should return ${expected}`, () => {
             expect(locatedLifeForm(...args)).toBe(expected);
         });
@@ -52,12 +40,17 @@ describe('locatedLifeForm function tests', () => {
 })
 
 describe('verifyLifeFormSurroundWhiteSpace function tests', () => {
-
     for (const { args, checkArea, expected } of surroundWhiteSpaceTestCases) {
         test(`verifyLifeFormSurroundWhiteSpace with rows 5, cols 5, current location x:${args[2]}, y:${args[1]} for ${checkArea} should return ${expected}`, () => {
             expect(verifyLifeFormSurroundWhiteSpace(...args)).toBe(expected);
         });
     }
+})
+
+describe('generateRaderAnimationArr function tests', () => {
+    test('generateRaderAnimationArr function generate glidermon arrays correctly', () => {
+        expect(JSON.stringify(generateRaderAnimationArr({ type: 'glidermon', isLifeForm: true}))).toBe(JSON.stringify(mockGenerateRaderAnimationArrData.mockGlidermon));
+      });
 })
 
 

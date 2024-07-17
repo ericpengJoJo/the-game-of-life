@@ -13,15 +13,20 @@ function ExampleBox () {
     const {
         state,
     } = useGameContext()
-    const [examples, setExamples] = useState({
-        lifeFormDetails: [],
-        currentIdx: 0,
-        pattern:[]
-    })
+
+    const initialHint = [{
+        pattern: noMoreHint
+    }, {
+        pattern: noMoreHint
+    }, {
+        pattern: noMoreHint
+    }]
+    const [hintIdx, setHintIdx] = useState(0)
+    const [hintDetails, setHintDetails] = useState(initialHint)
     const { user } = state;
     const [hintClick] = useSound(hintClickSound);
 
-    function generateExamples () {
+    async function generateExamples () {
         return lifeFormMaps.reduce((acc, cur) => {
             const capturedNum = user.lifeFormList.length;
             if (user.lifeFormList.includes(cur.name)) {
@@ -87,28 +92,20 @@ function ExampleBox () {
 
     function handleClick () {
         hintClick()
-        if (examples.currentIdx + 1 > examples.lifeFormDetails.length - 1){
-            return setExamples({
-                ...examples,
-                currentIdx: 0
-            });
+        if (hintIdx + 1 > hintDetails.length - 1){
+            return setHintIdx(0);
         }
-        return setExamples({
-            ...examples,
-            currentIdx: examples.currentIdx + 1
-        });
+        return setHintIdx(prev => prev + 1);
     }
 
     useEffect(() => {
-        const exampleArr = generateExamples()
-        const patterArr = exampleArr.length > 0 ? exampleArr[examples.currentIdx]?.pattern : noMoreHint
-        setExamples({
-            ...examples,
-            lifeFormDetails: exampleArr,
-            pattern:patterArr
-        })
+        async function fetchHints () {
+            const details = await generateExamples()
+            setHintDetails(details)
+        } 
+        fetchHints()
 
-    }, [state.lifeFormSpoted, examples.currentIdx])
+    }, [state.lifeFormSpoted])
     const { text, diffColor } = showCurrentDifficulty()
 
     return (
@@ -148,14 +145,14 @@ function ExampleBox () {
                             display: 'grid',
                             gridTemplateColumns: `repeat(${6}, 25px)`,
                     }}>
-                        {Object.values(examples).length > 0 && examples?.pattern.map((rows, i) =>
+                        {hintDetails.length > 0 ? hintDetails[hintIdx]?.pattern.map((rows, i) =>
                             rows.map((col, j) => (
                                 <div
                                     key={`expample-${i}-${j}`}
-                                    className={`rader-pixel-dot ${examples.pattern[i][j] ? 'pixel-white' : ''}`}                    
+                                    className={`rader-pixel-dot ${hintDetails[hintIdx].pattern[i][j] ? 'pixel-white' : ''}`}                    
                                 />
                             ))
-                        )}
+                        ) : <div>Loading...</div>}
                     </div>
                     
                 </div>

@@ -25,7 +25,7 @@ export const lifeFormMaps = [
     {
         name: 'blockmon',
         color: '#795548',
-        points: 10,
+        points: 100,
         shapes: [{
             width: 2,
             height: 2,
@@ -42,7 +42,7 @@ export const lifeFormMaps = [
     }, {
         name: 'blinkermon',
         color: '#4CAF50',
-        points: 10,
+        points: 200,
         shapes: [{
             width: 1,
             height: 3,
@@ -57,19 +57,19 @@ export const lifeFormMaps = [
             width: 7,
             height: 7,
             pattern: [
-                { x:3, y:1 }, { x:3, y:2 }, { x:3, y:3 }, { x:3, y:4 }, { x:3, y:5 }
+                { x:3, y:0 }, { x:4, y:0 }, { x:3, y:1 }, { x:4, y:1 }, { x:3, y:2 }, { x:4, y:2 }, { x:3, y:3 }, { x:4, y:3 }, { x:3, y:4 }, { x:4, y:4 }, { x:3, y:5 }, { x:4, y:5 }
             ]
         }, {
             width: 7,
             height: 7,
             pattern: [
-                { x:1, y:3 }, { x:2, y:3 }, { x:3, y:3 }, { x:4, y:3 }, { x:5, y:3 }
+                { x:1, y:2 }, { x:2, y:2 }, { x:3, y:2 }, { x:4, y:2 }, { x:5, y:2 }, { x:6, y:2 }, { x:1, y:3 }, { x:2, y:3 }, { x:3, y:3 }, { x:4, y:3 }, { x:5, y:3 }, { x:6, y:3 }
             ]
         }]
     }, {
         name: 'beehivemon',
         color: '#9C27B0',
-        points: 50,
+        points: 300,
         shapes: [{
             width: 3,
             height: 4,
@@ -84,7 +84,7 @@ export const lifeFormMaps = [
             width: 7,
             height: 7,
             pattern: [
-                { x:2, y:0 }, { x:3, y:0 }, { x:4, y:0 }, { x:1, y:1 }, { x:5, y:1 }, { x:1, y:2 }, { x:5, y:2 }, { x:1, y:3 }, { x:5, y:3 }, { x:1, y:4 }, { x:5, y:4 }, { x:1, y:5 }, { x:5, y:5 }, { x:2, y:6 }, { x:3, y:6 }, { x:4, y:6 }
+                { x:3, y:0 }, { x:4, y:0 }, { x:3, y:1 }, { x:4, y:1 }, { x:1, y:2 }, { x:2, y:2 }, { x:5, y:2 }, { x:6, y:2 }, { x:1, y:3 }, { x:2, y:3 }, { x:5, y:3 }, { x:6, y:3 }, { x:1, y:4 }, { x:2, y:4 }, { x:5, y:4 }, { x:6, y:4 }, { x:3, y:5 }, { x:4, y:5 }, { x:3, y:6 }, { x:4, y:6 }
             ]
         }]
     }, {
@@ -134,7 +134,7 @@ export const lifeFormMaps = [
     }, {
         name: 'loafmon',
         color: '#00BCD4',
-        points: 50,
+        points: 250,
         shapes: [{
             width: 4,
             height: 4,
@@ -161,7 +161,7 @@ export const lifeFormMaps = [
     }, {
         name: 'toadmon',
         color: '#8BC34A',
-        points: 100,
+        points: 400,
         shapes: [{
             width: 4,
             height: 4,
@@ -199,7 +199,7 @@ export const lifeFormMaps = [
         animation: [{
             width: 7,
             height: 7,
-            pattern: [{ x: 3, y: 1 }, { x: 4, y: 1 }, { x: 1, y: 2 }, { x: 5, y: 2 }, { x: 1, y: 3 }, { x: 5, y: 3 }, { x: 1, y: 4 }, { x: 5, y: 4 }, { x: 1, y: 5 }, { x: 5, y: 5 }, { x: 2, y: 6 }, { x: 3, y: 6 }]
+            pattern: [{ x: 3, y: 0 }, { x: 4, y: 0 }, { x: 3, y: 1 }, { x: 4, y: 1 }, { x: 0, y: 2 }, { x: 1, y: 2 }, { x: 5, y: 2 }, { x: 6, y: 2 }, { x: 0, y: 3 }, { x: 1, y: 3 }, { x: 5, y: 3 }, { x: 6, y: 3 }, { x: 0, y: 4 }, { x: 1, y: 4 }, { x: 5, y: 4 }, { x: 6, y: 4 }, { x: 2, y: 5 }, { x: 3, y: 5 }, { x: 2, y: 6 }, { x: 3, y: 6 }]
         }, {
             width: 7,
             height: 7,

@@ -335,19 +335,8 @@ export function verifyLifeFormSurroundWhiteSpace (
 
 export function generateRaderAnimationArr ({ type, isLifeForm = false }) {
     const result = []
-    let frameDetail
+    let frameDetail;
     let duplicateFrames = 1
-
-    if (type === 'captured' && !isLifeForm) {
-        const fullGrids = [];
-        const emptyGrids = []
-
-        for(let i = 0;i < 7; i += 1){
-            fullGrids.push(Array.from(Array(7), () => 1));
-            emptyGrids.push(Array.from(Array(7), () => 0));
-        }
-        return [fullGrids, emptyGrids];
-    }
 
     if (isLifeForm) {
         frameDetail = lifeFormMaps.filter(({name}) => name === type)[0];
@@ -359,6 +348,7 @@ export function generateRaderAnimationArr ({ type, isLifeForm = false }) {
     if (!isLifeForm && type === 'searching') {
         frameDetail = searchingRaderAnimation
     }
+
     const { animation, color, name } = frameDetail;
     
     if(type === 'blockmon' || type === 'beehivemon' || type === 'loafmon' || type === 'boatmon' || type === 'tubmon'){
