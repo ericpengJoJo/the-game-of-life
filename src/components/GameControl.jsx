@@ -50,6 +50,7 @@ function GameControl({
         })
 
         setTimeout(handleRunSimulation, 100);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [dispatch]);
 
     const handleVerifyLifeForm = () => {

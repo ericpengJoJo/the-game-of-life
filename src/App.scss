@@ -1,4 +1,3 @@
-/* App.css */
 $outline-width: 6px;
 $shadow-width: 4px;
 
@@ -40,7 +39,7 @@ li {
   color: black;
 }
 
-// Game Button Styling
+//////////////////////////////////////////// Game Button Styling  ////////////////////////////////////////////////////////////////////
 .eightbit-btn {
   background: $button-background;
   display: inline-block;
@@ -120,9 +119,7 @@ li {
   }
 }
 
-
-
-// Game Display Pixel Dot
+//////////////////////////////////////Grid Square Styling/////////////////////////////////
 .display-pixel-dot {
   width: 20px;
   height: 20px;
@@ -141,15 +138,13 @@ li {
   background-color: #689F38;
 }
 
-// Life Form Rader
-
 .rader-pixel-dot {
   width: 25px;
   height: 25px;
   border: solid 1px black;
 }
 
-// Font Styling
+//////////////////////////////////////Font Styling/////////////////////////////////
 .retro-game-font {
   font-family: "Press Start 2P", system-ui;
   font-weight: 400;
@@ -190,7 +185,6 @@ li {
 }
 
 //////////////////////////////////////win game css/////////////////////////////////
-
 .win-font {
   position: absolute;
   font-family: "Press Start 2P", system-ui;
@@ -255,7 +249,6 @@ li {
 
 .confetti-piece:nth-child(1) {
   left: 20%;
-  // right: 20%;
   animation-delay: 0.1s;
 }
 

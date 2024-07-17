@@ -104,7 +104,7 @@ function ExampleBox () {
             setHintDetails(details)
         } 
         fetchHints()
-
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [state.lifeFormSpoted])
     const { text, diffColor } = showCurrentDifficulty()
 

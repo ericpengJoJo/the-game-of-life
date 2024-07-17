@@ -16,6 +16,7 @@ const WinAnimation = () => {
     function handleReset () {
         dispatch({ type: 'reset' })
     };
+
     useEffect(()=>{
     playWinBGM()
 

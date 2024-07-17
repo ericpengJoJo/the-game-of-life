@@ -40,6 +40,31 @@ export const surroundWhiteSpaceTestCases  = [
     { args: [mockVerifyLifeFormSurroundWhiteSpaceData.center, 1, 2, 2, 2, lifeFormPosition.center], checkArea: 'center', expected: true }
 ];
 
+export const mockVerifyLifeFormData = {
+    threeLifeFormsSpoted: [
+        [1,1,0,0,0,0,0,0,0,0], 
+        [1,1,0,0,0,1,0,0,0,0], 
+        [0,0,0,0,0,1,0,1,0,1], 
+        [0,0,0,0,0,1,0,0,1,1], 
+        [0,0,0,0,0,0,0,0,1,0], 
+        [0,0,0,0,0,0,0,0,0,0]],
+    expected: {
+        spotLifeForm: {
+            blockmon: true,
+            beehivemon: false,
+            loafmon: false,
+            boatmon: false,
+            tubmon: false,
+            blinkermon: true,
+            toadmon: false,
+            beaconmon: false,
+            glidermon: true
+        },
+        newScore: 800,
+        newCaptureList: ['blockmon', 'blinkermon', 'glidermon']
+    }
+}
+
 export const mockGenerateRaderAnimationArrData = {
     mockGlidermon: [
         [

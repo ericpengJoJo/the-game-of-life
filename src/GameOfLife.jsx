@@ -32,6 +32,7 @@ function GameOfLife ({
 
     useEffect(() => {
         dispatch({ type: 'generateEmptyGameBoard', payload: { rows: numRows, cols: numCols }})
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
     return (
         <>

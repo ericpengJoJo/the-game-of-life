@@ -6,11 +6,13 @@ import {
     verifyLifeFormSurroundWhiteSpace,
     generateRaderAnimationArr
 } from '../utils/helpers'
+import { defaultLifeFormSpoted } from '../instance';
 import {
     mockGenerateEmptyGameBoardData,
     locatedLifeFormTestCases,
     surroundWhiteSpaceTestCases,
-    mockGenerateRaderAnimationArrData
+    mockGenerateRaderAnimationArrData,
+    mockVerifyLifeFormData
 } from './mock/helpersMock';
 
 
@@ -53,4 +55,9 @@ describe('generateRaderAnimationArr function tests', () => {
       });
 })
 
+describe('verifyLifeForm function tests', () => {
+    test('verifyLifeForm function spot glidermon, blockmon, and blinkermon correctly', () => {
+        expect(verifyLifeForm(mockVerifyLifeFormData.threeLifeFormsSpoted, defaultLifeFormSpoted)).toStrictEqual(mockVerifyLifeFormData.expected);
+      });
+})
 

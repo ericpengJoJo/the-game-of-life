@@ -8,8 +8,6 @@ import {
 } from '../utils/helpers';
 
 
-
-
 function LifeFormRader () {
     const {
         state,
@@ -62,6 +60,7 @@ function LifeFormRader () {
 
         return () => clearInterval(intervalId);
     }
+
     useEffect(() => {
         const clearAnimation = raderAnimation()
 
@@ -73,7 +72,7 @@ function LifeFormRader () {
                 clearAnimation();
             }
         }
-
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [lifeFormSpoted])
 
     return (

@@ -15,6 +15,7 @@ function App() {
       dispatch({ type: 'setWin' })
     }
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [state.lifeFormSpoted])
   return (
     <div>
