@@ -72,17 +72,17 @@ In my game, there are a total of 9 available life-form-mons for you to capture. 
 
 ### Day 1
 
-After some researches and played arround with other developers' Game of Life project online, it remind me of my experience in biology class when I observed living cells through a microscope and how I need to record the pattern of activity from those living cells. While it was fascinating to observe, but it also can be quite boring for people that aren't into biology and cannot tell the difference on what they are looking at. For Conway's Game of Life, I think the biggest issue is that it might not be an appealing game for people that aren't developers despite it can create so many patterns of life forms through cellular automation. In order to learn more about their perspective, I decide to get some feedback from friends that aren't developers.
+After some research and experimenting with other developers' Game of Life projects online, I was reminded of my experience in biology class, observing living cells through a microscope and recording their patterns of activity. While it was fascinating to observe, it can also be quite boring for people who aren't into biology and cannot distinguish what they are looking at. For Conway's Game of Life, I think the biggest issue is that it might not be an appealing game for people who aren't developers, despite it being able to create so many patterns of life forms through cellular automation. To learn more about their perspective, I decided to get some feedback from friends who aren't developers.
 
-Originally, I feel the game might not be appealing because of lack of guideline for the new players. Many examples I saw are just one big grid table with button to play and reset. After getting feedback from my friends, my assumption is further proven right and they cannot even tell what's going on despite all the living cells are running wild on screen. How do they enjoy the game when they cannot even understand anything on screen? This is also when I got my first idea. Maybe I can change the color of stable pattern living forms during the automation, so player can tells the difference between a living cell and a life form.
+Originally, I felt the game might not be appealing due to a lack of guidelines for new players. Many examples I saw were just one big grid table with buttons to play and reset. After getting feedback from my friends, my assumption was further proven right as they couldn't even tell what was happening despite all the living cells running wild on the screen. How can they enjoy the game when they cannot understand anything on the screen? This is when I got my first idea: maybe I can change the color of stable pattern life forms during the automation, so players can tell the difference between a living cell and a life form
 
 <details open>
 <summary>
  Snapshot Feature
 </summary> <br />
-After implement the basic Game of Life and gain deeper understanding of the iteration structure, I realized the execution of my first idea might not be so simple due to my lack of consideration on the potential workload of this iteration and it has to be run every second during automation. It might be possible if I just want the function to verify one or two life form every seconds, but what happen there are 15 or more life forms need to be verfiy in every seconds. I cannot even imagine the potential performance issue waiting ahead of me. For the limit amount of time I have, I need to have a feature that is more suitable in this case and at the same time, it wouldn't diverse too far from my initial vision. This is when the idea Pokemon Snap come into the picture.
+After implementing the basic Game of Life and gaining a deeper understanding of the iteration structure, I realized that the execution of my first idea might not be so simple due to my lack of consideration of the potential workload of this iteration, which has to run every second during automation. It might be possible if I just want the function to verify one or two life forms every second, but what happens when there are 15 or more life forms that need to be verified every second? I cannot even imagine the potential performance issues that would arise. Given the limited amount of time I have, I need to develop a feature that is more suitable for this scenario and, at the same time, doesn't diverge too far from my initial vision. This is when the idea of Pokémon Snap came into the picture.
 
-When observe Game of Life automation, I realized there are many life forms that only stay alive for a short period of time before they disappear and it almost like how the player only has limit of time to take a picture of pokemon appear on the screen before they run away in Pokemon Snap. I also realized pausing the game also can be resemble if player taking a picture. This also mean I only need to run this verification function when user pause the game. They are just work so well together and I instantly approve myself on the idea.
+When observing the Game of Life automation, I realized there are many life forms that only stay alive for a short period of time before they disappear. This is similar to how the player in Pokémon Snap only has a limited amount of time to take a picture of a Pokémon before it runs away. I also realized that pausing the game can resemble the player taking a picture. This means I only need to run this verification function when the user pauses the game. They work so well together, and I instantly approved this idea.
 
 </details>
 
@@ -90,9 +90,9 @@ When observe Game of Life automation, I realized there are many life forms that 
 <summary>
  Randomize Feature
 </summary> <br />
-While I was breaking down on life form verification feature, I also implement randomize feature, so user can generate living cells randomly on the grid table. This idea come to me because I am someone that like to play around the game before actually reading the tutorial. If user only start the game by create couple living cells on the map and they all quickly disappear after hit **Start Game**, they definitely will felt disappointed and quit the game before they understand the essence of the game.
+While I was working on the life form verification feature, I also implemented a randomize feature, allowing users to generate living cells randomly on the grid table. This idea came to me because I am someone who likes to play around with a game before actually reading the tutorial. If users start the game by creating a couple of living cells on the map and they all quickly disappear after hitting **Start Game**, they will definitely feel disappointed and quit the game before they understand its essence.
 
-By helping user generate massive amount of living cells at once, user can instantly see the chemistry reactions of all the living cells as soon as they hit **Start Game**, even though user might still be confused by the visual, I believe it generate enough of appeal to have user to check out the tutorial.
+By helping users generate a massive amount of living cells at once, they can instantly see the interactions of all the living cells as soon as they hit **Start Game**. Even though users might still be confused by the visual chaos, I believe it generates enough appeal to encourage them to check out the tutorial.
 
 </details>
 
@@ -100,10 +100,52 @@ By helping user generate massive amount of living cells at once, user can instan
 <summary>
  Life-Formdex Feature
 </summary> <br />
-The idea of Pokedex follow right after Pokemon Snap since I realized the players cannot even keep admiring at what they caught because whatever life form-mon they captured will disappear after they hit **Start Game** again. Even if I changed the color of the life form-mon in grids table, it will only be there temporary. What if I have whatever players captures to be store at corner like a trophy? This method not only allow players have more time admire their achievement, learn how many Life Form-mon they captured so far, they also can learn more about what their captured life forms look like without feeling like a chore. From the developer side, this way also allows us to have more freedom to play with the visual and maintain healthier performance environment by not overlapping too much tasks in one component.
+The idea of a Pokédex followed right after Pokémon Snap since I realized that players couldn't keep admiring what they caught because whatever life form-mon they captured would disappear after they hit Start Game again. Even if I changed the color of the life form-mon in the grid table, it would only be temporary. What if I had whatever players capture stored in a corner like a trophy? This method not only allows players more time to admire their achievements and learn how many life form-mons they've captured so far, but they can also learn more about what their captured life forms look like without feeling like it's a chore. From the developer's perspective, this approach also allows us to have more freedom to play with the visuals and maintain a healthier performance environment by not overloading a single component with too many tasks.
 
-Before players capture any life-form-mon, I also keep Life Formdex playing the radar detection animation in a loop. I think it's a good vitual representation for new players to instantly understand that this gameplay involve them to search for something.
+I also picked up the Context API at this point because I think it's perfect for this small-sized application. It involves less boilerplate code and, more importantly, makes it easier for other developers to review the state management structure in the context file.
+
+Before players capture any life form-mon, I also keep the Life Formdex playing the radar detection animation in a loop. I think it's a good visual representation for new players to instantly understand that this gameplay involves them searching for something as soon as they see the page.
 
 </details>
+
+<details open>
+<summary>
+ Score system Feature
+</summary> <br />
+Besides giving players a sense of achievement by capturing new life form-mons, I also introduced a score system for future scalability of the application. At this moment, I intentionally only allow players to earn points by capturing each life form-mon for the first time to prevent players from spamming the pause button. However, I see great potential in this feature once we implement the ability to identify which life form-mon has already given the player points.
+</details>
+
+<details open>
+<summary>
+ Difficulty Feature
+</summary> <br />
+Similar to the score system, I also introduced the difficulty feature for future scalability. Players can progress to harder difficulties once they capture a certain number of life form-mons. In the future, I am considering increasing the speed of automation as players reach harder difficulties, making some life form-mons even more challenging to capture. For now, I use the difficulty feature to limit the number of hints players can get.
+</details>
+
+<details open>
+<summary>
+ Hint Box Feature
+</summary> <br />
+This feature was introduced relatively late in development, but it is definitely an important piece of the puzzle. Assuming this is the very first time that players are experiencing the Game of Life, they might not know what a stable life form is or what it looks like. The Hint Box can guide players to create their first stable life form and more. By advancing to harder difficulties, players can also unlock more puzzle pieces in the Hint Box, giving them a sense of progression.
+</details>
+
+<details open>
+<summary>
+ Life Form-mon sound effect and BGM Feature
+</summary> <br />
+This feature might seem quite small, but I think it is crucial for my game. By having a BGM and sound effect whenever players capture a new life form-mon, it can leave a strong first impression. I felt like I was playing a completely different game after implementing all the sound effects and BGM into the application. It also leaves an impression on players that what they just captured is alive and lively.
+
+While implementing the Life Form-mon sound effect, I realized that if players capture multiple life form-mons all at once, it might cause the sound effects to overlap. To address this, I ensured the sound effect will only be triggered for the latest captured Life Form-mon.
+
+</details>
+
+<details open>
+<summary>
+ Win Animation Feature
+</summary> <br />
+I had multiple ideas on how to showcase the win animation once the players captured all the available life forms. First, the grid tables would turn blank and then generate a champion cup image with 1s and 0s. Second, I planned on having the hint box play a firework animation through iteration. However, I gave up both ideas due to lack of time. While my final solution might seem basic, I think the winning page and BGM did a decent job.
+</details>
+
+Overall, this project demonstrates a balance between creating an engaging user experience and maintaining scalability and performance. I hope you can appreciate my vision after trying out the application. Thank you for reading.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
