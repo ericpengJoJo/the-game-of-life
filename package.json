@@ -12,17 +12,16 @@
     "sass": "1.77.8",
     "sass-loader": "12.6.0",
     "scss": "0.2.4",
+    "serve": "^14.2.3",
     "use-sound": "4.0.3",
     "web-vitals": "2.1.4"
   },
-  "homepage": "https://ericpengJoJo.github.io/the-game-of-life",
   "scripts": {
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "heroku-postbuild": "npm run build"
   },
   "eslintConfig": {
     "extends": [
