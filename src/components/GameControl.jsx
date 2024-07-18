@@ -76,11 +76,11 @@ function GameControl({
           }}
         >
             <div style={{
-                height: 150,
-                width: 20 * 50,
+                height: 90,
+                width: 1100,
                 display: 'flex',
-                justifyContent: 'space-around',
-                alignItems: 'center'
+                justifyContent: 'space-between',
+                alignItems: 'center',
             }}>
                 <button
                     className='eightbit-btn'

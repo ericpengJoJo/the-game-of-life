@@ -16,10 +16,6 @@ function ExampleBox () {
 
     const initialHint = [{
         pattern: noMoreHint
-    }, {
-        pattern: noMoreHint
-    }, {
-        pattern: noMoreHint
     }]
     const [hintIdx, setHintIdx] = useState(0)
     const [hintDetails, setHintDetails] = useState(initialHint)
@@ -111,7 +107,7 @@ function ExampleBox () {
     return (
         <div
             style={{
-                marginLeft: 50
+                marginLeft: 20
             }}
         >
             <ContainerWrapper

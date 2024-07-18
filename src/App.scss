@@ -124,24 +124,29 @@ li {
   width: 20px;
   height: 20px;
   border: solid 1px gray;
+  caret-color: transparent;
 }
 
 .pixel-black {
   background-color: black;
+  caret-color: transparent;
 }
 
 .pixel-white {
   background-color: #FFFAFA;
+  caret-color: transparent;
 }
 
 .pixel-green {
   background-color: #689F38;
+  caret-color: transparent;
 }
 
 .rader-pixel-dot {
   width: 25px;
   height: 25px;
   border: solid 1px black;
+  caret-color: transparent;
 }
 
 //////////////////////////////////////Font Styling/////////////////////////////////
