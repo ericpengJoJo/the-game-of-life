@@ -13,10 +13,16 @@
     "sass": "1.77.8",
     "sass-loader": "12.6.0",
     "scss": "0.2.4",
-    "serve": "^14.2.3",
+    "serve": "14.2.3",
     "use-sound": "4.0.3",
     "web-vitals": "2.1.4"
   },
+  {
+    "engines": {
+      "node": "20.15.0"
+    }
+  }
+  
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
