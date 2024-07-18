@@ -161,13 +161,13 @@ While implementing the Life Form-mon sound effect, I realized that if players ca
 I had multiple ideas on how to showcase the win animation once the players captured all the available life forms. First, the grid tables would turn blank and then generate a champion cup image with 1s and 0s. Second, I planned on having the hint box play a firework animation through iteration. However, I gave up both ideas due to lack of time. While my final solution might seem basic, I think the winning page and BGM did a decent job.
 </details>
 
-Overall, this project demonstrates a balance between creating an engaging user experience and maintaining scalability and performance. I hope you can appreciate my vision after trying out the application. Thank you for reading.
+Overall, this project demonstrates a balance between creating an engaging user experience and maintaining scalability and performance. I hope you enjoy your experience when trying out the application. Thank you for reading.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## 🌟 License
 
-This project is for US Mobile job interview only.
+This project is for take home assessment review only.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
