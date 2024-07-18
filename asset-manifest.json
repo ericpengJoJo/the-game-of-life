@@ -1,0 +1,33 @@
+{
+  "files": {
+    "main.css": "/the-game-of-life/static/css/main.7bea144e.css",
+    "main.js": "/the-game-of-life/static/js/main.fdf9fc70.js",
+    "static/js/885.bdf9db20.chunk.js": "/the-game-of-life/static/js/885.bdf9db20.chunk.js",
+    "static/js/453.d2e0fe37.chunk.js": "/the-game-of-life/static/js/453.d2e0fe37.chunk.js",
+    "static/media/winMusic.mp3": "/the-game-of-life/static/media/winMusic.2b39813af89f8b773fcc.mp3",
+    "static/media/mainBackgroundMusic.mp3": "/the-game-of-life/static/media/mainBackgroundMusic.c1ba58f136cab5cf2685.mp3",
+    "static/media/reset.mp3": "/the-game-of-life/static/media/reset.cced7a014c8dd9493f15.mp3",
+    "static/media/hintClick.mp3": "/the-game-of-life/static/media/hintClick.80d3b0374c36ba7a41a0.mp3",
+    "static/media/blockmonSound.mp3": "/the-game-of-life/static/media/blockmonSound.c307ca171a567dc4f676.mp3",
+    "static/media/click.mp3": "/the-game-of-life/static/media/click.ae2de8e7e136703f3626.mp3",
+    "static/media/loafmonSound.mp3": "/the-game-of-life/static/media/loafmonSound.28dc9d6586d6df7644ba.mp3",
+    "static/media/eletricClick.mp3": "/the-game-of-life/static/media/eletricClick.abaf4bf650618364c304.mp3",
+    "static/media/pauseClick.mp3": "/the-game-of-life/static/media/pauseClick.e0298dbd6e9c3c212907.mp3",
+    "static/media/boatmonSound.mp3": "/the-game-of-life/static/media/boatmonSound.fc6f166b3f20ae8e602c.mp3",
+    "static/media/beehivemonSound.mp3": "/the-game-of-life/static/media/beehivemonSound.7fb035e55bf2f1ea1a57.mp3",
+    "static/media/toadmonSound.mp3": "/the-game-of-life/static/media/toadmonSound.58a9cf77a9770f9fbfef.mp3",
+    "static/media/glidermonSound.mp3": "/the-game-of-life/static/media/glidermonSound.ea89955ec2b206485418.mp3",
+    "static/media/tubmonSound.mp3": "/the-game-of-life/static/media/tubmonSound.b48861b5716208e7289e.mp3",
+    "static/media/beaconmonSound.mp3": "/the-game-of-life/static/media/beaconmonSound.900111f2456ddb0d0510.mp3",
+    "static/media/blinkermonSound.mp3": "/the-game-of-life/static/media/blinkermonSound.f6a3febc50b4c62619b7.mp3",
+    "index.html": "/the-game-of-life/index.html",
+    "main.7bea144e.css.map": "/the-game-of-life/static/css/main.7bea144e.css.map",
+    "main.fdf9fc70.js.map": "/the-game-of-life/static/js/main.fdf9fc70.js.map",
+    "885.bdf9db20.chunk.js.map": "/the-game-of-life/static/js/885.bdf9db20.chunk.js.map",
+    "453.d2e0fe37.chunk.js.map": "/the-game-of-life/static/js/453.d2e0fe37.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.7bea144e.css",
+    "static/js/main.fdf9fc70.js"
+  ]
+}
