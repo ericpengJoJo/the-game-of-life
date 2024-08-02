@@ -1,12 +1,12 @@
-import React from 'react';
+import React from "react";
 
 const CenteredContainer = ({ children }) => {
   const containerStyle = {
-    display: 'grid',
-    placeItems: 'center',
-    backgroundColor: '#FDFBD4',
-    width: '100vw',
-    height: '100vh',
+    display: "grid",
+    placeItems: "center",
+    backgroundColor: "#FDFBD4",
+    width: "100vw",
+    height: "100vh",
   };
 
   return <div style={containerStyle}>{children}</div>;
